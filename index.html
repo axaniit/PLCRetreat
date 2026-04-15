@@ -39,17 +39,18 @@
           rgba(0, 0, 0, 0.58)
         ),
         url("loading-bg.png") center center / cover no-repeat;
-      transform: scale(1.03);
-      animation: bgDrift 18s ease-in-out infinite alternate;
+      transition: background 0.8s ease;
     }
 
-    @keyframes bgDrift {
-      0% {
-        transform: scale(1.03) translateY(0px);
-      }
-      100% {
-        transform: scale(1.06) translateY(-10px);
-      }
+    .bg.scene1 {
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.14),
+          rgba(0, 0, 0, 0.28) 45%,
+          rgba(0, 0, 0, 0.46)
+        ),
+        url("scene1-bg.png") center center / cover no-repeat;
     }
 
     .vignette {
@@ -59,7 +60,7 @@
         radial-gradient(circle at center, rgba(255,255,255,0.02), transparent 42%),
         radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.55) 100%);
       pointer-events: none;
-      z-index: 2;
+      z-index: 4;
     }
 
     .particles {
@@ -87,6 +88,16 @@
       box-shadow: 0 0 4px rgba(255, 248, 230, 0.22);
     }
 
+    .scene1-particle {
+      background: rgba(245, 245, 245, 0.45);
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.18);
+    }
+
+    .scene1-particle.soft {
+      background: rgba(245, 245, 245, 0.28);
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.12);
+    }
+
     @keyframes driftUp {
       0% {
         transform: translateY(0px) translateX(0px);
@@ -104,10 +115,98 @@
       }
     }
 
-    .content {
+    .branches {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .branches.show {
+      opacity: 1;
+    }
+
+    .branch-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform-origin: center top;
+      animation: swayBranches 8s ease-in-out infinite alternate;
+      opacity: 0.92;
+    }
+
+    @keyframes swayBranches {
+      0% {
+        transform: rotate(-0.45deg) scale(1.01);
+      }
+      100% {
+        transform: rotate(0.45deg) scale(1.01);
+      }
+    }
+
+    .mist {
       position: absolute;
       inset: 0;
       z-index: 4;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .mist.show {
+      opacity: 1;
+    }
+
+    .mist::before,
+    .mist::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-repeat: no-repeat;
+      filter: blur(10px);
+    }
+
+    .mist::before {
+      background:
+        radial-gradient(circle at 50% 34%, rgba(255,255,255,0.13), transparent 20%),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,0.08), transparent 23%),
+        radial-gradient(circle at 46% 70%, rgba(255,255,255,0.06), transparent 22%);
+      animation: mistFloatA 12s ease-in-out infinite alternate;
+    }
+
+    .mist::after {
+      background:
+        radial-gradient(circle at 58% 40%, rgba(255,255,255,0.09), transparent 18%),
+        radial-gradient(circle at 42% 58%, rgba(255,255,255,0.07), transparent 20%);
+      animation: mistFloatB 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes mistFloatA {
+      0% {
+        transform: translateY(0px) translateX(0px);
+      }
+      100% {
+        transform: translateY(-10px) translateX(6px);
+      }
+    }
+
+    @keyframes mistFloatB {
+      0% {
+        transform: translateY(0px) translateX(0px);
+      }
+      100% {
+        transform: translateY(8px) translateX(-8px);
+      }
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -216,24 +315,112 @@
       opacity: 0;
     }
 
+    .story-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 920px;
+      width: 100%;
+    }
+
     .story-text {
-      font-size: 1.35rem;
-      max-width: 740px;
-      line-height: 1.7;
+      font-size: 1.14rem;
+      max-width: 760px;
+      line-height: 1.72;
       color: #f5f2e8;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.55);
+      text-shadow: 0 2px 14px rgba(0,0,0,0.62);
       opacity: 0;
       transform: translateY(12px);
       transition: 1s ease;
+      margin-bottom: 26px;
+      background: rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(245, 242, 232, 0.08);
+      border-radius: 16px;
+      padding: 22px 24px;
+      backdrop-filter: blur(1px);
+    }
+
+    .choices {
+      width: 100%;
+      max-width: 760px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 1s ease 0.15s;
+    }
+
+    .choice-btn {
+      position: relative;
+      text-align: left;
+      padding: 14px 18px;
+      background: rgba(245, 242, 232, 0.96);
+      color: #111;
+      border: 1.5px solid #111;
+      border-radius: 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 0.97rem;
+      line-height: 1.45;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .choice-btn::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(17,17,17,0.85);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .choice-btn:hover {
+      background: #ebe6d6;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.24);
+    }
+
+    .choice-btn.selected {
+      background: #ddd6c2;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.30);
+      transform: translateY(-1px);
+    }
+
+    .status-note {
+      margin-top: 16px;
+      font-size: 0.92rem;
+      color: #ddd6c2;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: 0.4s ease;
+    }
+
+    .status-note.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      .story-text {
+        font-size: 1rem;
+        padding: 18px;
+      }
+
+      .choice-btn {
+        font-size: 0.92rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <div class="screen">
-    <div class="bg"></div>
+    <div class="bg" id="bg"></div>
 
-    <div class="particles">
+    <div class="particles" id="particles">
       <span class="particle" style="left:8%; bottom:10%; animation-duration:13s; animation-delay:0s;"></span>
       <span class="particle soft" style="left:16%; bottom:22%; animation-duration:10s; animation-delay:1s;"></span>
       <span class="particle soft" style="left:24%; bottom:8%; animation-duration:12s; animation-delay:2.1s;"></span>
@@ -245,6 +432,12 @@
       <span class="particle soft" style="left:74%; bottom:14%; animation-duration:10s; animation-delay:1.8s;"></span>
       <span class="particle" style="left:82%; bottom:8%; animation-duration:13s; animation-delay:0.3s;"></span>
       <span class="particle soft" style="left:90%; bottom:17%; animation-duration:11s; animation-delay:2.8s;"></span>
+    </div>
+
+    <div class="mist" id="mist"></div>
+
+    <div class="branches" id="branches">
+      <img src="scene1-branches.png" alt="" class="branch-img">
     </div>
 
     <div class="vignette"></div>
@@ -274,6 +467,45 @@
     const subtitle = document.getElementById("subtitle");
     const button = document.getElementById("begin");
     const content = document.getElementById("content");
+    const bg = document.getElementById("bg");
+    const branches = document.getElementById("branches");
+    const mist = document.getElementById("mist");
+    const particles = document.getElementById("particles");
+
+    const scores = JSON.parse(localStorage.getItem("plcOriginScores")) || {
+      hero: 0,
+      antihero: 0,
+      sorcerer: 0,
+      alchemist: 0,
+      trickster: 0,
+      sage: 0
+    };
+
+    function saveScores() {
+      localStorage.setItem("plcOriginScores", JSON.stringify(scores));
+    }
+
+    function applyChoice(archetype, buttonEl) {
+      scores[archetype] += 1;
+      saveScores();
+
+      document.querySelectorAll(".choice-btn").forEach(btn => {
+        btn.disabled = true;
+        btn.classList.remove("selected");
+      });
+
+      buttonEl.classList.add("selected");
+
+      const status = document.getElementById("statusNote");
+      status.textContent = "Choice recorded.";
+      status.classList.add("show");
+
+      console.log("Current PLC Origin scores:", scores);
+
+      setTimeout(() => {
+        status.textContent = "Scene 1 complete. Scene 2 can be connected next.";
+      }, 700);
+    }
 
     setTimeout(() => {
       loading.style.opacity = "0";
@@ -289,24 +521,51 @@
       content.classList.add("fade-out");
 
       setTimeout(() => {
+        bg.classList.add("scene1");
+        branches.classList.add("show");
+        mist.classList.add("show");
+
+        [...particles.children].forEach((p) => {
+          p.classList.add("scene1-particle");
+        });
+
         content.innerHTML = `
-          <div class="story-text" id="story">
-            You step onto the path behind Lake Claire.
-            <br><br>
-            The forest is quiet. Too quiet.
-            <br><br>
-            Something waits ahead.
+          <div class="story-wrap">
+            <div class="story-text" id="story">
+              You step onto a path behind Lake Claire. The trees close in faster than you expect, and the sounds of campus fall away until it is just you and the quiet. There is no guide, no instructions, no sign telling you what comes next. Just the path, and the choice to begin.
+            </div>
+
+            <div class="choices" id="choices">
+              <button class="choice-btn" data-archetype="hero">A. Move forward anyway. If something needs to be faced, you will face it.</button>
+              <button class="choice-btn" data-archetype="antihero">B. Pause. You are not stepping into something without understanding it first.</button>
+              <button class="choice-btn" data-archetype="sorcerer">C. Stay still and take it in. The silence is not empty. There is something to notice.</button>
+              <button class="choice-btn" data-archetype="alchemist">D. Look closer at your surroundings. If you are going to move forward, you want something to work with.</button>
+              <button class="choice-btn" data-archetype="trickster">E. Step slightly off the path. You want to see how far it actually holds.</button>
+              <button class="choice-btn" data-archetype="sage">F. Take a breath and consider where this path could lead before committing to it.</button>
+            </div>
+
+            <div class="status-note" id="statusNote"></div>
           </div>
         `;
 
         const story = document.getElementById("story");
+        const choices = document.getElementById("choices");
 
         setTimeout(() => {
           content.classList.remove("fade-out");
           story.style.opacity = "1";
           story.style.transform = "translateY(0)";
-        }, 100);
-      }, 600);
+          choices.classList.add("show");
+        }, 120);
+
+        document.querySelectorAll(".choice-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const archetype = btn.dataset.archetype;
+            applyChoice(archetype, btn);
+          });
+        });
+
+      }, 650);
     });
   </script>
 </body>
