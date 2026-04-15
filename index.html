@@ -46,9 +46,9 @@
       background:
         linear-gradient(
           to bottom,
-          rgba(0, 0, 0, 0.14),
-          rgba(0, 0, 0, 0.28) 45%,
-          rgba(0, 0, 0, 0.46)
+          rgba(0, 0, 0, 0.10),
+          rgba(0, 0, 0, 0.22) 45%,
+          rgba(0, 0, 0, 0.42)
         ),
         url("scene1-bg.png") center center / cover no-repeat;
     }
@@ -58,7 +58,7 @@
       inset: 0;
       background:
         radial-gradient(circle at center, rgba(255,255,255,0.02), transparent 42%),
-        radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.55) 100%);
+        radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.52) 100%);
       pointer-events: none;
       z-index: 4;
     }
@@ -89,13 +89,13 @@
     }
 
     .scene1-particle {
-      background: rgba(245, 245, 245, 0.45);
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.18);
+      background: rgba(245, 245, 245, 0.40);
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.16);
     }
 
     .scene1-particle.soft {
-      background: rgba(245, 245, 245, 0.28);
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.12);
+      background: rgba(245, 245, 245, 0.24);
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.10);
     }
 
     @keyframes driftUp {
@@ -107,7 +107,7 @@
         opacity: 0.45;
       }
       50% {
-        opacity: 0.85;
+        opacity: 0.8;
       }
       100% {
         transform: translateY(-120px) translateX(14px);
@@ -115,6 +115,7 @@
       }
     }
 
+    /* BRANCHES */
     .branches {
       position: absolute;
       inset: 0;
@@ -130,21 +131,23 @@
 
     .branch-img {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      top: 0;
+      left: 50%;
+      width: 88%;
+      max-width: 1200px;
+      height: auto;
+      transform: translateX(-50%);
       transform-origin: center top;
-      animation: swayBranches 8s ease-in-out infinite alternate;
-      opacity: 0.92;
+      opacity: 0.88;
+      animation: swayBranches 5.5s ease-in-out infinite alternate;
     }
 
     @keyframes swayBranches {
       0% {
-        transform: rotate(-0.45deg) scale(1.01);
+        transform: translateX(-50%) rotate(-1deg);
       }
       100% {
-        transform: rotate(0.45deg) scale(1.01);
+        transform: translateX(-50%) rotate(1deg);
       }
     }
 
@@ -172,35 +175,27 @@
 
     .mist::before {
       background:
-        radial-gradient(circle at 50% 34%, rgba(255,255,255,0.13), transparent 20%),
-        radial-gradient(circle at 52% 52%, rgba(255,255,255,0.08), transparent 23%),
-        radial-gradient(circle at 46% 70%, rgba(255,255,255,0.06), transparent 22%);
+        radial-gradient(circle at 50% 34%, rgba(255,255,255,0.10), transparent 18%),
+        radial-gradient(circle at 52% 52%, rgba(255,255,255,0.07), transparent 22%),
+        radial-gradient(circle at 46% 70%, rgba(255,255,255,0.05), transparent 20%);
       animation: mistFloatA 12s ease-in-out infinite alternate;
     }
 
     .mist::after {
       background:
-        radial-gradient(circle at 58% 40%, rgba(255,255,255,0.09), transparent 18%),
-        radial-gradient(circle at 42% 58%, rgba(255,255,255,0.07), transparent 20%);
+        radial-gradient(circle at 58% 40%, rgba(255,255,255,0.07), transparent 16%),
+        radial-gradient(circle at 42% 58%, rgba(255,255,255,0.06), transparent 18%);
       animation: mistFloatB 15s ease-in-out infinite alternate;
     }
 
     @keyframes mistFloatA {
-      0% {
-        transform: translateY(0px) translateX(0px);
-      }
-      100% {
-        transform: translateY(-10px) translateX(6px);
-      }
+      0% { transform: translateY(0px) translateX(0px); }
+      100% { transform: translateY(-10px) translateX(6px); }
     }
 
     @keyframes mistFloatB {
-      0% {
-        transform: translateY(0px) translateX(0px);
-      }
-      100% {
-        transform: translateY(8px) translateX(-8px);
-      }
+      0% { transform: translateY(0px) translateX(0px); }
+      100% { transform: translateY(8px) translateX(-8px); }
     }
 
     .content {
@@ -220,8 +215,8 @@
 
     .story-mode {
       justify-content: flex-start;
-      padding-top: 8vh;
-      padding-bottom: 6vh;
+      padding-top: 7vh;
+      padding-bottom: 5vh;
     }
 
     .loading {
@@ -327,7 +322,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       max-width: 920px;
       width: 100%;
     }
@@ -341,7 +336,7 @@
       opacity: 0;
       transform: translateY(12px);
       transition: 1s ease;
-      margin-bottom: 26px;
+      margin-bottom: 20px;
       background: rgba(0, 0, 0, 0.34);
       border: 1px solid rgba(245, 242, 232, 0.08);
       border-radius: 16px;
@@ -353,22 +348,18 @@
     .choices {
       width: 100%;
       max-width: 760px;
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 10px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 1s ease 0.15s, transform 1s ease 0.15s;
-      margin-top: 6px;
-    }
-
-    .choices.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
+      margin-top: 4px;
     }
 
     .choice-btn {
       position: relative;
+      display: block;
+      width: 100%;
       text-align: left;
       padding: 14px 18px;
       background: rgba(245, 242, 232, 0.96);
@@ -381,6 +372,7 @@
       cursor: pointer;
       transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
       box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      box-sizing: border-box;
     }
 
     .choice-btn::before {
@@ -420,8 +412,12 @@
 
     @media (max-width: 700px) {
       .story-mode {
-        padding-top: 5vh;
+        padding-top: 4vh;
         padding-bottom: 5vh;
+      }
+
+      .branch-img {
+        width: 110%;
       }
 
       .story-text {
@@ -576,7 +572,8 @@
           content.classList.add("story-mode");
           story.style.opacity = "1";
           story.style.transform = "translateY(0)";
-          choices.classList.add("show");
+          choices.style.opacity = "1";
+          choices.style.transform = "translateY(0)";
         }, 120);
 
         document.querySelectorAll(".choice-btn").forEach((btn) => {
