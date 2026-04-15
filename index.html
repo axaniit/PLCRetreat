@@ -28,7 +28,6 @@
       background: #000;
     }
 
-    /* background image layer */
     .bg {
       position: absolute;
       inset: -2%;
@@ -53,7 +52,6 @@
       }
     }
 
-    /* vignette / old-page darkness */
     .vignette {
       position: absolute;
       inset: 0;
@@ -64,7 +62,6 @@
       z-index: 2;
     }
 
-    /* ambient particle layer */
     .particles {
       position: absolute;
       inset: 0;
@@ -107,7 +104,6 @@
       }
     }
 
-    /* content */
     .content {
       position: absolute;
       inset: 0;
@@ -126,8 +122,8 @@
       letter-spacing: 0.12em;
       color: #c8a64b;
       margin-bottom: 16px;
-      opacity: 1;
       text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+      opacity: 1;
       transition: opacity 0.8s ease;
     }
 
@@ -154,7 +150,6 @@
       transition: 1s ease 0.2s;
     }
 
-    /* stitched storybook button */
     .button {
       margin-top: 32px;
       padding: 0;
@@ -170,17 +165,17 @@
       position: relative;
       display: inline-block;
       min-width: 150px;
-      padding: 13px 26px;
-      color: #f5f2e8;
-      background: rgba(17, 17, 17, 0.82);
-      border: 1px solid #c8a64b;
-      box-shadow:
-        0 0 0 1px rgba(245,242,232,0.05) inset,
-        0 8px 24px rgba(0,0,0,0.28);
+      padding: 13px 28px;
+      background: #f5f2e8;
+      color: #111;
+      border: 1.5px solid #111;
+      border-radius: 12px;
       font-family: Georgia, "Times New Roman", serif;
       font-size: 1rem;
       letter-spacing: 0.05em;
-      text-transform: none;
+      box-shadow:
+        0 8px 20px rgba(0,0,0,0.25),
+        inset 0 0 0 1px rgba(0,0,0,0.04);
       overflow: hidden;
     }
 
@@ -188,7 +183,8 @@
       content: "";
       position: absolute;
       inset: 6px;
-      border: 1px dashed rgba(200, 166, 75, 0.75);
+      border: 1px dashed #111;
+      border-radius: 9px;
       pointer-events: none;
     }
 
@@ -199,16 +195,16 @@
       top: 50%;
       transform: translateY(-50%);
       font-size: 0.9rem;
-      color: #c8a64b;
-      opacity: 0.9;
+      color: #111;
+      opacity: 0.85;
     }
 
     .button:hover .button-inner {
-      background: rgba(22, 22, 22, 0.92);
+      background: #ebe6d6;
+      transform: translateY(-2px);
       box-shadow:
-        0 0 0 1px rgba(245,242,232,0.05) inset,
-        0 0 18px rgba(200, 166, 75, 0.18),
-        0 8px 24px rgba(0,0,0,0.32);
+        0 12px 28px rgba(0,0,0,0.35),
+        inset 0 0 0 1px rgba(0,0,0,0.04);
     }
 
     .show {
