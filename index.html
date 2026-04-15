@@ -15,7 +15,7 @@
 
     body {
       overflow: hidden;
-      background: black;
+      background: #000;
       font-family: Georgia, "Times New Roman", serif;
       color: #f5f2e8;
     }
@@ -24,21 +24,98 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
-        url("loading-bg.png") center center / cover no-repeat;
+      overflow: hidden;
+      background: #000;
     }
 
+    /* background image layer */
+    .bg {
+      position: absolute;
+      inset: -2%;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.20),
+          rgba(0, 0, 0, 0.38) 45%,
+          rgba(0, 0, 0, 0.58)
+        ),
+        url("loading-bg.png") center center / cover no-repeat;
+      transform: scale(1.03);
+      animation: bgDrift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgDrift {
+      0% {
+        transform: scale(1.03) translateY(0px);
+      }
+      100% {
+        transform: scale(1.06) translateY(-10px);
+      }
+    }
+
+    /* vignette / old-page darkness */
+    .vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.02), transparent 42%),
+        radial-gradient(circle at center, transparent 48%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* ambient particle layer */
+    .particles {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 248, 230, 0.7);
+      box-shadow: 0 0 8px rgba(255, 248, 230, 0.35);
+      animation: driftUp linear infinite;
+    }
+
+    .particle.soft {
+      width: 2px;
+      height: 2px;
+      opacity: 0.5;
+      box-shadow: 0 0 4px rgba(255, 248, 230, 0.22);
+    }
+
+    @keyframes driftUp {
+      0% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.45;
+      }
+      50% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateY(-120px) translateX(14px);
+        opacity: 0;
+      }
+    }
+
+    /* content */
     .content {
       position: absolute;
       inset: 0;
-
+      z-index: 4;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       text-align: center;
       padding: 20px;
       transition: opacity 0.6s ease;
@@ -46,44 +123,92 @@
 
     .loading {
       font-size: 0.95rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: #c8a64b;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
       opacity: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.45);
       transition: opacity 0.8s ease;
     }
 
     .title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      line-height: 1.12;
+      max-width: 850px;
+      color: #f5f2e8;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.58);
       opacity: 0;
       transform: translateY(10px);
       transition: 1s ease;
-      max-width: 800px;
     }
 
     .subtitle {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 1rem;
+      line-height: 1.6;
+      color: #ddd6c2;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.52);
       opacity: 0;
       transform: translateY(10px);
       transition: 1s ease 0.2s;
     }
 
+    /* stitched storybook button */
     .button {
-      margin-top: 30px;
-      padding: 10px 22px;
-      border: 1px solid #c8a64b;
-      background: rgba(0,0,0,0.6);
-      color: white;
+      margin-top: 32px;
+      padding: 0;
+      border: 0;
+      background: transparent;
       cursor: pointer;
-
       opacity: 0;
       transform: translateY(10px);
       transition: 1s ease 0.4s;
     }
 
-    .button:hover {
-      background: rgba(20,20,20,0.9);
+    .button-inner {
+      position: relative;
+      display: inline-block;
+      min-width: 150px;
+      padding: 13px 26px;
+      color: #f5f2e8;
+      background: rgba(17, 17, 17, 0.82);
+      border: 1px solid #c8a64b;
+      box-shadow:
+        0 0 0 1px rgba(245,242,232,0.05) inset,
+        0 8px 24px rgba(0,0,0,0.28);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+      overflow: hidden;
+    }
+
+    .button-inner::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(200, 166, 75, 0.75);
+      pointer-events: none;
+    }
+
+    .button-inner::after {
+      content: "✦";
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: #c8a64b;
+      opacity: 0.9;
+    }
+
+    .button:hover .button-inner {
+      background: rgba(22, 22, 22, 0.92);
+      box-shadow:
+        0 0 0 1px rgba(245,242,232,0.05) inset,
+        0 0 18px rgba(200, 166, 75, 0.18),
+        0 8px 24px rgba(0,0,0,0.32);
     }
 
     .show {
@@ -96,11 +221,13 @@
     }
 
     .story-text {
-      font-size: 1.4rem;
-      max-width: 700px;
-      line-height: 1.6;
+      font-size: 1.35rem;
+      max-width: 740px;
+      line-height: 1.7;
+      color: #f5f2e8;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.55);
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(12px);
       transition: 1s ease;
     }
   </style>
@@ -108,8 +235,25 @@
 
 <body>
   <div class="screen">
-    <div class="content" id="content">
+    <div class="bg"></div>
 
+    <div class="particles">
+      <span class="particle" style="left:8%; bottom:10%; animation-duration:13s; animation-delay:0s;"></span>
+      <span class="particle soft" style="left:16%; bottom:22%; animation-duration:10s; animation-delay:1s;"></span>
+      <span class="particle soft" style="left:24%; bottom:8%; animation-duration:12s; animation-delay:2.1s;"></span>
+      <span class="particle" style="left:33%; bottom:18%; animation-duration:15s; animation-delay:0.6s;"></span>
+      <span class="particle soft" style="left:41%; bottom:11%; animation-duration:11s; animation-delay:1.4s;"></span>
+      <span class="particle" style="left:49%; bottom:19%; animation-duration:14s; animation-delay:2.6s;"></span>
+      <span class="particle soft" style="left:57%; bottom:9%; animation-duration:12s; animation-delay:0.9s;"></span>
+      <span class="particle" style="left:66%; bottom:20%; animation-duration:16s; animation-delay:2.3s;"></span>
+      <span class="particle soft" style="left:74%; bottom:14%; animation-duration:10s; animation-delay:1.8s;"></span>
+      <span class="particle" style="left:82%; bottom:8%; animation-duration:13s; animation-delay:0.3s;"></span>
+      <span class="particle soft" style="left:90%; bottom:17%; animation-duration:11s; animation-delay:2.8s;"></span>
+    </div>
+
+    <div class="vignette"></div>
+
+    <div class="content" id="content">
       <div class="loading" id="loading">
         Loading your path...
       </div>
@@ -122,10 +266,9 @@
         The path begins behind Lake Claire.
       </div>
 
-      <button class="button" id="begin">
-        Begin
+      <button class="button" id="begin" type="button">
+        <span class="button-inner">Begin</span>
       </button>
-
     </div>
   </div>
 
@@ -136,7 +279,6 @@
     const button = document.getElementById("begin");
     const content = document.getElementById("content");
 
-    // Initial animation
     setTimeout(() => {
       loading.style.opacity = "0";
     }, 1200);
@@ -147,7 +289,6 @@
       button.classList.add("show");
     }, 1600);
 
-    // Begin button → transition to story
     button.addEventListener("click", () => {
       content.classList.add("fade-out");
 
@@ -169,7 +310,6 @@
           story.style.opacity = "1";
           story.style.transform = "translateY(0)";
         }, 100);
-
       }, 600);
     });
   </script>
