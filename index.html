@@ -489,7 +489,7 @@
       scores[archetype] += 1;
       saveScores();
 
-      document.querySelectorAll(".choice-btn").forEach(btn => {
+      document.querySelectorAll(".choice-btn").forEach((btn) => {
         btn.disabled = true;
         btn.classList.remove("selected");
       });
