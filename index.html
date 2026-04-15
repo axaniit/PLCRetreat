@@ -214,6 +214,14 @@
       text-align: center;
       padding: 20px;
       transition: opacity 0.6s ease;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+
+    .story-mode {
+      justify-content: flex-start;
+      padding-top: 8vh;
+      padding-bottom: 6vh;
     }
 
     .loading {
@@ -339,6 +347,7 @@
       border-radius: 16px;
       padding: 22px 24px;
       backdrop-filter: blur(1px);
+      box-sizing: border-box;
     }
 
     .choices {
@@ -349,7 +358,13 @@
       gap: 10px;
       opacity: 0;
       transform: translateY(10px);
-      transition: 1s ease 0.15s;
+      transition: opacity 1s ease 0.15s, transform 1s ease 0.15s;
+      margin-top: 6px;
+    }
+
+    .choices.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .choice-btn {
@@ -404,6 +419,11 @@
     }
 
     @media (max-width: 700px) {
+      .story-mode {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+      }
+
       .story-text {
         font-size: 1rem;
         padding: 18px;
@@ -553,6 +573,7 @@
 
         setTimeout(() => {
           content.classList.remove("fade-out");
+          content.classList.add("story-mode");
           story.style.opacity = "1";
           story.style.transform = "translateY(0)";
           choices.classList.add("show");
@@ -564,7 +585,6 @@
             applyChoice(archetype, btn);
           });
         });
-
       }, 650);
     });
   </script>
