@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PLC Origin Test</title>
+  <title>PLC Origin</title>
 
   <style>
     html, body {
@@ -14,82 +14,164 @@
     }
 
     body {
-      background: black;
       overflow: hidden;
+      background: black;
       font-family: Georgia, "Times New Roman", serif;
+      color: #f5f2e8;
     }
 
-    .stage {
+    .screen {
       position: relative;
       width: 100vw;
       height: 100vh;
+
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+        url("loading-bg.png") center center / cover no-repeat;
     }
 
-    .sparkle {
+    .content {
       position: absolute;
-      width: 90px;
-      height: auto;
+      inset: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      padding: 20px;
+      transition: opacity 0.6s ease;
     }
 
-    .sparkle-one {
-      left: 45%;
-      top: 50%;
-      animation: floatSparkle 3s ease-in-out infinite;
+    .loading {
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      color: #c8a64b;
+      margin-bottom: 15px;
+      opacity: 1;
+      transition: opacity 0.8s ease;
     }
 
-    .sparkle-two {
-      left: 55%;
-      top: 40%;
-      width: 60px;
-      animation: floatSparkle 2.5s ease-in-out infinite 0.5s;
+    .title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 1s ease;
+      max-width: 800px;
     }
 
-    .sparkle-three {
-      left: 60%;
-      top: 60%;
-      width: 20px;
-      animation: floatSparkle 3.5s ease-in-out infinite 1s;
+    .subtitle {
+      margin-top: 10px;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 1s ease 0.2s;
     }
 
-    @keyframes floatSparkle {
-      0% {
-        transform: translateY(0px) scale(1);
-        opacity: 0.4;
-      }
-      50% {
-        transform: translateY(-15px) scale(1.05);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(0px) scale(1);
-        opacity: 0.4;
-      }
+    .button {
+      margin-top: 30px;
+      padding: 10px 22px;
+      border: 1px solid #c8a64b;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      cursor: pointer;
+
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 1s ease 0.4s;
     }
 
-    /* Optional: subtle fade-in for page */
-    body {
-      animation: fadeIn 1s ease;
+    .button:hover {
+      background: rgba(20,20,20,0.9);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    .story-text {
+      font-size: 1.4rem;
+      max-width: 700px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: 1s ease;
     }
   </style>
 </head>
 
 <body>
-  <main class="stage">
+  <div class="screen">
+    <div class="content" id="content">
 
-    <!-- MAIN TEST -->
-    <img src="sparkle-main.png" alt="Sparkle main" class="sparkle sparkle-one">
+      <div class="loading" id="loading">
+        Loading your path...
+      </div>
 
-    <!-- OPTIONAL: if you create these -->
-    <!--
-    <img src="sparkle-small.png" alt="Sparkle small" class="sparkle sparkle-two">
-    <img src="sparkle-dot.png" alt="Sparkle dot" class="sparkle sparkle-three">
-    -->
+      <h1 class="title" id="title">
+        What Is Your PLC Origin Story?
+      </h1>
 
-  </main>
+      <div class="subtitle" id="subtitle">
+        The path begins behind Lake Claire.
+      </div>
+
+      <button class="button" id="begin">
+        Begin
+      </button>
+
+    </div>
+  </div>
+
+  <script>
+    const loading = document.getElementById("loading");
+    const title = document.getElementById("title");
+    const subtitle = document.getElementById("subtitle");
+    const button = document.getElementById("begin");
+    const content = document.getElementById("content");
+
+    // Initial animation
+    setTimeout(() => {
+      loading.style.opacity = "0";
+    }, 1200);
+
+    setTimeout(() => {
+      title.classList.add("show");
+      subtitle.classList.add("show");
+      button.classList.add("show");
+    }, 1600);
+
+    // Begin button → transition to story
+    button.addEventListener("click", () => {
+      content.classList.add("fade-out");
+
+      setTimeout(() => {
+        content.innerHTML = `
+          <div class="story-text" id="story">
+            You step onto the path behind Lake Claire.
+            <br><br>
+            The forest is quiet. Too quiet.
+            <br><br>
+            Something waits ahead.
+          </div>
+        `;
+
+        const story = document.getElementById("story");
+
+        setTimeout(() => {
+          content.classList.remove("fade-out");
+          story.style.opacity = "1";
+          story.style.transform = "translateY(0)";
+        }, 100);
+
+      }, 600);
+    });
+  </script>
 </body>
 </html>
