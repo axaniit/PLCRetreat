@@ -172,7 +172,7 @@
     .apollo-overlay {
       position: absolute;
       inset: 0;
-      z-index: 5;
+      z-index: 19;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
@@ -186,7 +186,7 @@
     .apollo-img {
       position: absolute;
       left: 50%;
-      top: 19%;
+      top: 15%;
       width: min(42vw, 520px);
       transform: translateX(-50%);
       opacity: 0.78;
@@ -195,7 +195,7 @@
     .scene2-swirls {
       position: absolute;
       inset: 0;
-      z-index: 8;
+      z-index: 20;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
@@ -208,9 +208,9 @@
     .swirl-zone {
       position: absolute;
       left: 50%;
-      top: 56%;
-      width: 360px;
-      height: 170px;
+      top: 60%;
+      width: 300px;
+      height: 130px;
       transform: translateX(-50%);
       pointer-events: none;
     }
@@ -224,75 +224,112 @@
       background: linear-gradient(
         to right,
         transparent 0%,
-        rgba(255,255,255,0.05) 10%,
-        rgba(255,255,255,0.28) 35%,
-        rgba(255,255,255,0.55) 50%,
-        rgba(255,255,255,0.22) 75%,
+        rgba(255,255,255,0.18) 18%,
+        rgba(255,255,255,0.88) 50%,
+        rgba(255,255,255,0.18) 82%,
         transparent 100%
       );
-      filter: blur(0.2px);
+      opacity: 0;
+      filter: blur(0.35px);
       transform-origin: center center;
     }
 
     .css-wind::after {
       content: "";
       position: absolute;
-      right: 6%;
+      right: 8%;
       top: 50%;
-      width: 24px;
-      height: 18px;
-      border-top: 2px solid rgba(255,255,255,0.34);
+      width: 18px;
+      height: 14px;
+      border-top: 2px solid rgba(255,255,255,0.45);
       border-radius: 50%;
-      transform: translateY(-50%) rotate(10deg);
-      opacity: 0.75;
+      transform: translateY(-50%) rotate(14deg);
+      opacity: 0.8;
     }
 
-    .wind-a {
-      width: 150px;
-      animation: swirlWindA 4.2s linear infinite;
-    }
-
-    .wind-b {
-      width: 120px;
-      animation: swirlWindB 3.6s linear infinite 0.8s;
-    }
-
-    .wind-c {
-      width: 96px;
-      animation: swirlWindC 3.1s linear infinite 1.4s;
-    }
-
-    .wind-d {
-      width: 76px;
-      animation: swirlWindD 2.7s linear infinite 0.3s;
-    }
+    .wind-a { width: 150px; animation: swirlWindA 4.2s ease-in-out infinite; }
+    .wind-b { width: 120px; animation: swirlWindB 3.8s ease-in-out infinite 0.7s; }
+    .wind-c { width: 96px;  animation: swirlWindC 3.2s ease-in-out infinite 1.3s; }
+    .wind-d { width: 72px;  animation: swirlWindD 2.8s ease-in-out infinite 0.3s; }
 
     @keyframes swirlWindA {
-      0%   { transform: translate(-120px, 28px) rotate(4deg); opacity: 0; }
-      12%  { opacity: 0.6; }
-      50%  { transform: translate(0px, -10px) rotate(10deg); opacity: 0.82; }
-      100% { transform: translate(132px, 18px) rotate(18deg); opacity: 0; }
+      0% {
+        transform: translate(-120px, 34px) rotate(-8deg) scaleX(0.88);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.68;
+      }
+      45% {
+        transform: translate(-28px, -4px) rotate(8deg) scaleX(1);
+        opacity: 0.9;
+      }
+      70% {
+        transform: translate(46px, -14px) rotate(18deg) scaleX(0.96);
+        opacity: 0.72;
+      }
+      100% {
+        transform: translate(122px, 18px) rotate(30deg) scaleX(0.86);
+        opacity: 0;
+      }
     }
 
     @keyframes swirlWindB {
-      0%   { transform: translate(112px, 22px) rotate(180deg); opacity: 0; }
-      12%  { opacity: 0.54; }
-      50%  { transform: translate(4px, -6px) rotate(194deg); opacity: 0.72; }
-      100% { transform: translate(-118px, 24px) rotate(208deg); opacity: 0; }
+      0% {
+        transform: translate(112px, 28px) rotate(188deg) scaleX(0.84);
+        opacity: 0;
+      }
+      15% {
+        opacity: 0.56;
+      }
+      42% {
+        transform: translate(18px, -8px) rotate(200deg) scaleX(1);
+        opacity: 0.82;
+      }
+      68% {
+        transform: translate(-34px, -2px) rotate(212deg) scaleX(0.96);
+        opacity: 0.68;
+      }
+      100% {
+        transform: translate(-120px, 24px) rotate(228deg) scaleX(0.84);
+        opacity: 0;
+      }
     }
 
     @keyframes swirlWindC {
-      0%   { transform: translate(-72px, 44px) rotate(-2deg); opacity: 0; }
-      12%  { opacity: 0.46; }
-      50%  { transform: translate(16px, 6px) rotate(4deg); opacity: 0.64; }
-      100% { transform: translate(88px, 32px) rotate(10deg); opacity: 0; }
+      0% {
+        transform: translate(-70px, 50px) rotate(-10deg) scaleX(0.8);
+        opacity: 0;
+      }
+      18% {
+        opacity: 0.48;
+      }
+      48% {
+        transform: translate(8px, 6px) rotate(6deg) scaleX(1);
+        opacity: 0.72;
+      }
+      100% {
+        transform: translate(86px, 34px) rotate(20deg) scaleX(0.82);
+        opacity: 0;
+      }
     }
 
     @keyframes swirlWindD {
-      0%   { transform: translate(64px, 50px) rotate(12deg); opacity: 0; }
-      12%  { opacity: 0.42; }
-      50%  { transform: translate(-8px, 12px) rotate(18deg); opacity: 0.58; }
-      100% { transform: translate(-84px, 42px) rotate(24deg); opacity: 0; }
+      0% {
+        transform: translate(56px, 54px) rotate(12deg) scaleX(0.76);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.38;
+      }
+      52% {
+        transform: translate(-6px, 18px) rotate(22deg) scaleX(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translate(-82px, 42px) rotate(34deg) scaleX(0.78);
+        opacity: 0;
+      }
     }
 
     .leaf-swirl {
@@ -349,7 +386,7 @@
     .content {
       position: absolute;
       inset: 0;
-      z-index: 6;
+      z-index: 21;
       display: flex;
       flex-direction: column;
       align-items: center;
