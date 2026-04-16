@@ -38,7 +38,7 @@
           rgba(0, 0, 0, 0.38) 45%,
           rgba(0, 0, 0, 0.58)
         ),
-        url("loading-bg.png") center center / cover no-repeat;
+        url("assets/backgrounds/loading-bg.png") center center / cover no-repeat;
       transition: background 0.8s ease;
     }
 
@@ -50,7 +50,18 @@
           rgba(0, 0, 0, 0.22) 45%,
           rgba(0, 0, 0, 0.42)
         ),
-        url("scene1-bg.png") center center / cover no-repeat;
+        url("assets/backgrounds/scene1-bg.png") center center / cover no-repeat;
+    }
+
+    .bg.scene2 {
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.14),
+          rgba(0, 0, 0, 0.30) 45%,
+          rgba(0, 0, 0, 0.48)
+        ),
+        url("assets/backgrounds/scene2-bg.jpeg") center center / cover no-repeat;
     }
 
     .vignette {
@@ -88,12 +99,12 @@
       box-shadow: 0 0 4px rgba(255, 248, 230, 0.22);
     }
 
-    .scene1-particle {
+    .scene-particle {
       background: rgba(245, 245, 245, 0.40);
       box-shadow: 0 0 6px rgba(255, 255, 255, 0.16);
     }
 
-    .scene1-particle.soft {
+    .scene-particle.soft {
       background: rgba(245, 245, 245, 0.24);
       box-shadow: 0 0 4px rgba(255, 255, 255, 0.10);
     }
@@ -198,6 +209,194 @@
       100% { transform: translateY(8px) translateX(-8px); }
     }
 
+    .apollo-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      overflow: hidden;
+    }
+
+    .apollo-overlay.show {
+      opacity: 1;
+    }
+
+    .apollo-img {
+      position: absolute;
+      left: 50%;
+      top: 11%;
+      width: min(58vw, 760px);
+      transform: translateX(-50%);
+      opacity: 0.78;
+    }
+
+    .wind-layer,
+    .leaf-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      overflow: hidden;
+    }
+
+    .wind-layer.show,
+    .leaf-layer.show {
+      opacity: 1;
+    }
+
+    .wind {
+      position: absolute;
+      opacity: 0.5;
+      filter: brightness(1.05);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .wind1 {
+      width: 180px;
+      left: -14%;
+      top: 30%;
+      animation: windFlow1 10s linear infinite;
+    }
+
+    .wind2 {
+      width: 210px;
+      left: -18%;
+      top: 45%;
+      animation: windFlow2 12s linear infinite 1.5s;
+    }
+
+    .wind3 {
+      width: 150px;
+      left: -10%;
+      top: 58%;
+      animation: windFlow3 8.5s linear infinite 0.5s;
+    }
+
+    .wind4 {
+      width: 120px;
+      left: -8%;
+      top: 38%;
+      animation: windFlow4 7.5s linear infinite 2s;
+    }
+
+    @keyframes windFlow1 {
+      0%   { transform: translateX(0) translateY(0) rotate(2deg); opacity: 0; }
+      15%  { opacity: 0.5; }
+      85%  { opacity: 0.5; }
+      100% { transform: translateX(135vw) translateY(-14px) rotate(6deg); opacity: 0; }
+    }
+
+    @keyframes windFlow2 {
+      0%   { transform: translateX(0) translateY(0) rotate(-2deg); opacity: 0; }
+      15%  { opacity: 0.45; }
+      85%  { opacity: 0.45; }
+      100% { transform: translateX(138vw) translateY(10px) rotate(3deg); opacity: 0; }
+    }
+
+    @keyframes windFlow3 {
+      0%   { transform: translateX(0) translateY(0) rotate(1deg); opacity: 0; }
+      15%  { opacity: 0.42; }
+      85%  { opacity: 0.42; }
+      100% { transform: translateX(132vw) translateY(-8px) rotate(5deg); opacity: 0; }
+    }
+
+    @keyframes windFlow4 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      15%  { opacity: 0.35; }
+      85%  { opacity: 0.35; }
+      100% { transform: translateX(128vw) translateY(6px) rotate(2deg); opacity: 0; }
+    }
+
+    .leaf {
+      position: absolute;
+      opacity: 0.78;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .leaf1 {
+      width: 18px;
+      left: -5%;
+      top: 34%;
+      animation: leafFlow1 8.5s linear infinite;
+    }
+
+    .leaf2 {
+      width: 22px;
+      left: -8%;
+      top: 50%;
+      animation: leafFlow2 9.5s linear infinite 1s;
+    }
+
+    .leaf3 {
+      width: 16px;
+      left: -3%;
+      top: 42%;
+      animation: leafFlow3 7.5s linear infinite 2s;
+    }
+
+    .leaf4 {
+      width: 24px;
+      left: -6%;
+      top: 60%;
+      animation: leafFlow4 10.5s linear infinite 0.7s;
+    }
+
+    .leaf5 {
+      width: 18px;
+      left: -9%;
+      top: 26%;
+      animation: leafFlow5 8s linear infinite 3s;
+    }
+
+    .leaf6 {
+      width: 14px;
+      left: -4%;
+      top: 55%;
+      animation: leafFlow6 9s linear infinite 1.8s;
+    }
+
+    @keyframes leafFlow1 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.72; }
+      100% { transform: translateX(118vw) translateY(20px) rotate(290deg); opacity: 0; }
+    }
+
+    @keyframes leafFlow2 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.72; }
+      100% { transform: translateX(122vw) translateY(-18px) rotate(340deg); opacity: 0; }
+    }
+
+    @keyframes leafFlow3 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.7; }
+      100% { transform: translateX(120vw) translateY(12px) rotate(260deg); opacity: 0; }
+    }
+
+    @keyframes leafFlow4 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.76; }
+      100% { transform: translateX(126vw) translateY(-24px) rotate(310deg); opacity: 0; }
+    }
+
+    @keyframes leafFlow5 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.68; }
+      100% { transform: translateX(124vw) translateY(18px) rotate(280deg); opacity: 0; }
+    }
+
+    @keyframes leafFlow6 {
+      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.65; }
+      100% { transform: translateX(120vw) translateY(-14px) rotate(250deg); opacity: 0; }
+    }
+
     .content {
       position: absolute;
       inset: 0;
@@ -252,18 +451,23 @@
       transition: 1s ease 0.2s;
     }
 
-    .button {
+    .button,
+    .continue-btn {
       margin-top: 32px;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
+    }
+
+    .button {
       opacity: 0;
       transform: translateY(10px);
       transition: 1s ease 0.4s;
     }
 
-    .button-inner {
+    .button-inner,
+    .continue-inner {
       position: relative;
       display: inline-block;
       min-width: 150px;
@@ -281,7 +485,8 @@
       overflow: hidden;
     }
 
-    .button-inner::before {
+    .button-inner::before,
+    .continue-inner::before {
       content: "";
       position: absolute;
       inset: 6px;
@@ -290,7 +495,8 @@
       pointer-events: none;
     }
 
-    .button-inner::after {
+    .button-inner::after,
+    .continue-inner::after {
       content: "✦";
       position: absolute;
       right: 12px;
@@ -301,7 +507,8 @@
       opacity: 0.85;
     }
 
-    .button:hover .button-inner {
+    .button:hover .button-inner,
+    .continue-btn:hover .continue-inner {
       background: #ebe6d6;
       transform: translateY(-2px);
       box-shadow:
@@ -411,6 +618,18 @@
       transform: translateY(0);
     }
 
+    .continue-wrap {
+      margin-top: 16px;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: 0.4s ease;
+    }
+
+    .continue-wrap.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 900px) {
       .choices {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -429,6 +648,11 @@
 
       .branch-img {
         width: 145%;
+      }
+
+      .apollo-img {
+        width: 90vw;
+        top: 12%;
       }
 
       .story-text {
@@ -470,7 +694,27 @@
     <div class="mist" id="mist"></div>
 
     <div class="branches" id="branches">
-      <img src="scene1-branches.png" alt="" class="branch-img">
+      <img src="assets/overlays/scene1-branches.png" alt="" class="branch-img">
+    </div>
+
+    <div class="apollo-overlay" id="apolloOverlay">
+      <img src="assets/overlays/Apollo.png" alt="" class="apollo-img">
+    </div>
+
+    <div class="wind-layer" id="windLayer">
+      <img src="assets/effects/wind/wind1.png" alt="" class="wind wind1">
+      <img src="assets/effects/wind/wind2.png" alt="" class="wind wind2">
+      <img src="assets/effects/wind/wind3.png" alt="" class="wind wind3">
+      <img src="assets/effects/wind/wind4.png" alt="" class="wind wind4">
+    </div>
+
+    <div class="leaf-layer" id="leafLayer">
+      <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf leaf1">
+      <img src="assets/effects/leaves/leaf2.png" alt="" class="leaf leaf2">
+      <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf leaf3">
+      <img src="assets/effects/leaves/leaf4.png" alt="" class="leaf leaf4">
+      <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf leaf5">
+      <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf leaf6">
     </div>
 
     <div class="vignette"></div>
@@ -504,6 +748,9 @@
     const branches = document.getElementById("branches");
     const mist = document.getElementById("mist");
     const particles = document.getElementById("particles");
+    const apolloOverlay = document.getElementById("apolloOverlay");
+    const windLayer = document.getElementById("windLayer");
+    const leafLayer = document.getElementById("leafLayer");
 
     const scores = JSON.parse(localStorage.getItem("plcOriginScores")) || {
       hero: 0,
@@ -518,7 +765,7 @@
       localStorage.setItem("plcOriginScores", JSON.stringify(scores));
     }
 
-    function applyChoice(archetype, buttonEl) {
+    function applyChoice(archetype, buttonEl, onComplete) {
       scores[archetype] += 1;
       saveScores();
 
@@ -530,14 +777,130 @@
       buttonEl.classList.add("selected");
 
       const status = document.getElementById("statusNote");
-      status.textContent = "Choice recorded.";
-      status.classList.add("show");
+      if (status) {
+        status.textContent = "Choice recorded.";
+        status.classList.add("show");
+      }
 
       console.log("Current PLC Origin scores:", scores);
 
+      if (onComplete) {
+        setTimeout(onComplete, 700);
+      }
+    }
+
+    function softenParticles() {
+      [...particles.children].forEach((p) => {
+        p.classList.add("scene-particle");
+      });
+    }
+
+    function renderScene1() {
+      bg.classList.add("scene1");
+      branches.classList.add("show");
+      mist.classList.add("show");
+      softenParticles();
+
+      content.innerHTML = `
+        <div class="story-wrap">
+          <div class="story-text" id="story">
+            You step onto a path behind Lake Claire. The trees close in faster than you expect, and the sounds of campus fall away until it is just you and the quiet. There is no guide, no instructions, no sign telling you what comes next. Just the path, and the choice to begin.
+          </div>
+
+          <div class="choices" id="choices">
+            <button class="choice-btn" data-archetype="hero">A. Move forward anyway. If something needs to be faced, you will face it.</button>
+            <button class="choice-btn" data-archetype="antihero">B. Pause. You are not stepping into something without understanding it first.</button>
+            <button class="choice-btn" data-archetype="sorcerer">C. Stay still and take it in. The silence is not empty. There is something to notice.</button>
+            <button class="choice-btn" data-archetype="alchemist">D. Look closer at your surroundings. If you are going to move forward, you want something to work with.</button>
+            <button class="choice-btn" data-archetype="trickster">E. Step slightly off the path. You want to see how far it actually holds.</button>
+            <button class="choice-btn" data-archetype="sage">F. Take a breath and consider where this path could lead before committing to it.</button>
+          </div>
+
+          <div class="status-note" id="statusNote"></div>
+        </div>
+      `;
+
+      const story = document.getElementById("story");
+
       setTimeout(() => {
-        status.textContent = "Scene 1 complete. Scene 2 can be connected next.";
-      }, 700);
+        content.classList.remove("fade-out");
+        content.classList.add("story-mode");
+        story.style.opacity = "1";
+        story.style.transform = "translateY(0)";
+      }, 120);
+
+      document.querySelectorAll(".choice-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const archetype = btn.dataset.archetype;
+          applyChoice(archetype, btn, () => {
+            content.classList.add("fade-out");
+            setTimeout(renderScene2, 550);
+          });
+        });
+      });
+    }
+
+    function renderScene2() {
+      bg.classList.remove("scene1");
+      bg.classList.add("scene2");
+      branches.classList.add("show");
+      mist.classList.add("show");
+      apolloOverlay.classList.add("show");
+      windLayer.classList.add("show");
+      leafLayer.classList.add("show");
+      softenParticles();
+
+      content.innerHTML = `
+        <div class="story-wrap">
+          <div class="story-text" id="story">
+            Further in, the trees begin to thin, and stone rises through the roots. What should be familiar doesn’t feel that way anymore. A structure stands ahead, columns worn and sunlit, arranged like something older than the campus around it. A shrine. To Apollo. You do not remember this being here. Then something shifts. Not loud. Not sudden. But enough to tell you the path has changed.
+          </div>
+
+          <div class="choices" id="choices">
+            <button class="choice-btn" data-archetype="hero">A. Move toward it. If something is wrong, you are not going to leave it alone.</button>
+            <button class="choice-btn" data-archetype="antihero">B. Stay just out of reach and watch closely. You want to understand it before you decide how to act.</button>
+            <button class="choice-btn" data-archetype="sorcerer">C. Follow its movement. The way it shifts tells you more than anything you could ask.</button>
+            <button class="choice-btn" data-archetype="alchemist">D. Reach for something useful nearby. If it becomes a problem, you will be ready for it.</button>
+            <button class="choice-btn" data-archetype="trickster">E. Make your presence known. If something is out there, you would rather it react to you.</button>
+            <button class="choice-btn" data-archetype="sage">F. Hold your position and wait. Acting too soon would tell you less than staying still.</button>
+          </div>
+
+          <div class="status-note" id="statusNote"></div>
+          <div class="continue-wrap" id="continueWrap">
+            <button class="continue-btn" type="button">
+              <span class="continue-inner">Continue</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      const story = document.getElementById("story");
+
+      setTimeout(() => {
+        content.classList.remove("fade-out");
+        content.classList.add("story-mode");
+        story.style.opacity = "1";
+        story.style.transform = "translateY(0)";
+      }, 120);
+
+      document.querySelectorAll(".choice-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const archetype = btn.dataset.archetype;
+          applyChoice(archetype, btn, () => {
+            const status = document.getElementById("statusNote");
+            const continueWrap = document.getElementById("continueWrap");
+            if (status) status.textContent = "Choice recorded. Scene 2 complete.";
+            if (continueWrap) continueWrap.classList.add("show");
+          });
+        });
+      });
+
+      const continueBtn = document.querySelector(".continue-btn");
+      if (continueBtn) {
+        continueBtn.addEventListener("click", () => {
+          console.log("Ready for Scene 3. Current PLC Origin scores:", scores);
+        });
+      }
     }
 
     setTimeout(() => {
@@ -552,51 +915,7 @@
 
     button.addEventListener("click", () => {
       content.classList.add("fade-out");
-
-      setTimeout(() => {
-        bg.classList.add("scene1");
-        branches.classList.add("show");
-        mist.classList.add("show");
-
-        [...particles.children].forEach((p) => {
-          p.classList.add("scene1-particle");
-        });
-
-        content.innerHTML = `
-          <div class="story-wrap">
-            <div class="story-text" id="story">
-              You step onto a path behind Lake Claire. The trees close in faster than you expect, and the sounds of campus fall away until it is just you and the quiet. There is no guide, no instructions, no sign telling you what comes next. Just the path, and the choice to begin.
-            </div>
-
-            <div class="choices" id="choices">
-              <button class="choice-btn" data-archetype="hero">A. Move forward anyway. If something needs to be faced, you will face it.</button>
-              <button class="choice-btn" data-archetype="antihero">B. Pause. You are not stepping into something without understanding it first.</button>
-              <button class="choice-btn" data-archetype="sorcerer">C. Stay still and take it in. The silence is not empty. There is something to notice.</button>
-              <button class="choice-btn" data-archetype="alchemist">D. Look closer at your surroundings. If you are going to move forward, you want something to work with.</button>
-              <button class="choice-btn" data-archetype="trickster">E. Step slightly off the path. You want to see how far it actually holds.</button>
-              <button class="choice-btn" data-archetype="sage">F. Take a breath and consider where this path could lead before committing to it.</button>
-            </div>
-
-            <div class="status-note" id="statusNote"></div>
-          </div>
-        `;
-
-        const story = document.getElementById("story");
-
-        setTimeout(() => {
-          content.classList.remove("fade-out");
-          content.classList.add("story-mode");
-          story.style.opacity = "1";
-          story.style.transform = "translateY(0)";
-        }, 120);
-
-        document.querySelectorAll(".choice-btn").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            const archetype = btn.dataset.archetype;
-            applyChoice(archetype, btn);
-          });
-        });
-      }, 650);
+      setTimeout(renderScene1, 650);
     });
   </script>
 </body>
