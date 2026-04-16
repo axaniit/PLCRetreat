@@ -514,21 +514,6 @@
       transform: translateY(-1px);
     }
 
-    .status-note {
-      margin-top: 14px;
-      margin-bottom: 6px;
-      font-size: 0.92rem;
-      color: #ddd6c2;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: 0.4s ease;
-    }
-
-    .status-note.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .continue-wrap {
       margin-top: 16px;
       opacity: 0;
@@ -617,26 +602,26 @@
     <div class="mist" id="mist"></div>
 
     <div class="branches" id="branches">
-      <img src="" alt="" class="branch-img" id="branchesImg">
+      <img src="assets/overlays/scene1-branches.png" alt="" class="branch-img">
     </div>
 
     <div class="apollo-overlay" id="apolloOverlay">
-      <img src="" alt="" class="apollo-img" id="apolloImg">
+      <img src="Apollo.png" alt="" class="apollo-img">
     </div>
 
     <div class="scene2-swirls" id="scene2Swirls">
       <div class="swirl-zone">
-        <img src="" alt="" class="wind-streak wind-a" id="windA">
-        <img src="" alt="" class="wind-streak wind-b" id="windB">
-        <img src="" alt="" class="wind-streak wind-c" id="windC">
-        <img src="" alt="" class="wind-streak wind-d" id="windD">
+        <img src="assets/effects/wind/wind1.png" alt="" class="wind-streak wind-a">
+        <img src="assets/effects/wind/wind2.png" alt="" class="wind-streak wind-b">
+        <img src="assets/effects/wind/wind3.png" alt="" class="wind-streak wind-c">
+        <img src="assets/effects/wind/wind4.png" alt="" class="wind-streak wind-d">
 
-        <img src="" alt="" class="leaf-swirl leaf-a" id="leafA">
-        <img src="" alt="" class="leaf-swirl leaf-b" id="leafB">
-        <img src="" alt="" class="leaf-swirl leaf-c" id="leafC">
-        <img src="" alt="" class="leaf-swirl leaf-d" id="leafD">
-        <img src="" alt="" class="leaf-swirl leaf-e" id="leafE">
-        <img src="" alt="" class="leaf-swirl leaf-f" id="leafF">
+        <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf-swirl leaf-a">
+        <img src="assets/effects/leaves/leaf2.png" alt="" class="leaf-swirl leaf-b">
+        <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf-swirl leaf-c">
+        <img src="assets/effects/leaves/leaf4.png" alt="" class="leaf-swirl leaf-d">
+        <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf-swirl leaf-e">
+        <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf-swirl leaf-f">
       </div>
     </div>
 
@@ -662,25 +647,10 @@
   </div>
 
   <script>
-    /* If your folder is actually named assets/bfs instead of assets/backgrounds,
-       only change the first three lines below. */
     const PATHS = {
-      loadingBg: "assets/backgrounds/loading-bg.png",
-      scene1Bg: "assets/backgrounds/scene1-bg.png",
-      scene2Bg: "assets/backgrounds/scene2-bg.jpeg",
-
-      branches: "assets/overlays/scene1-branches.png",
-      apollo: "assets/overlays/apollo.png",
-
-      leaf1: "assets/effects/leaves/leaf1.png",
-      leaf2: "assets/effects/leaves/leaf2.png",
-      leaf3: "assets/effects/leaves/leaf3.png",
-      leaf4: "assets/effects/leaves/leaf4.png",
-
-      wind1: "assets/effects/wind/wind1.png",
-      wind2: "assets/effects/wind/wind2.png",
-      wind3: "assets/effects/wind/wind3.png",
-      wind4: "assets/effects/wind/wind4.png"
+      loadingBg: "loading-bg.png",
+      scene1Bg: "scene1-bg.png",
+      scene2Bg: "scene2-bg.jpeg"
     };
 
     const loading = document.getElementById("loading");
@@ -694,21 +664,6 @@
     const particles = document.getElementById("particles");
     const apolloOverlay = document.getElementById("apolloOverlay");
     const scene2Swirls = document.getElementById("scene2Swirls");
-
-    document.getElementById("branchesImg").src = PATHS.branches;
-    document.getElementById("apolloImg").src = PATHS.apollo;
-
-    document.getElementById("windA").src = PATHS.wind1;
-    document.getElementById("windB").src = PATHS.wind2;
-    document.getElementById("windC").src = PATHS.wind3;
-    document.getElementById("windD").src = PATHS.wind4;
-
-    document.getElementById("leafA").src = PATHS.leaf1;
-    document.getElementById("leafB").src = PATHS.leaf2;
-    document.getElementById("leafC").src = PATHS.leaf3;
-    document.getElementById("leafD").src = PATHS.leaf4;
-    document.getElementById("leafE").src = PATHS.leaf1;
-    document.getElementById("leafF").src = PATHS.leaf3;
 
     const scores = JSON.parse(localStorage.getItem("plcOriginScores")) || {
       hero: 0,
@@ -745,13 +700,6 @@
       });
 
       buttonEl.classList.add("selected");
-
-      const status = document.getElementById("statusNote");
-      if (status) {
-        status.textContent = "Choice recorded.";
-        status.classList.add("show");
-      }
-
       console.log("Current PLC Origin scores:", scores);
 
       if (onComplete) {
@@ -785,8 +733,6 @@
             <button class="choice-btn" data-archetype="trickster">E. Step slightly off the path. You want to see how far it actually holds.</button>
             <button class="choice-btn" data-archetype="sage">F. Take a breath and consider where this path could lead before committing to it.</button>
           </div>
-
-          <div class="status-note" id="statusNote"></div>
         </div>
       `;
 
@@ -832,7 +778,6 @@
             <button class="choice-btn" data-archetype="sage">F. Hold your position and wait. Acting too soon would tell you less than staying still.</button>
           </div>
 
-          <div class="status-note" id="statusNote"></div>
           <div class="continue-wrap" id="continueWrap">
             <button class="continue-btn" type="button">
               <span class="continue-inner">Continue</span>
@@ -853,9 +798,7 @@
       document.querySelectorAll(".choice-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           applyChoice(btn.dataset.archetype, btn, () => {
-            const status = document.getElementById("statusNote");
             const continueWrap = document.getElementById("continueWrap");
-            if (status) status.textContent = "Choice recorded. Scene 2 complete.";
             if (continueWrap) continueWrap.classList.add("show");
           });
         });
