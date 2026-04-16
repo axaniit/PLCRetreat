@@ -186,10 +186,10 @@
     .apollo-img {
       position: absolute;
       left: 50%;
-      top: 12%;
-      width: min(54vw, 680px);
+      top: 15%;
+      width: min(42vw, 520px);
       transform: translateX(-50%);
-      opacity: 0.82;
+      opacity: 0.78;
     }
 
     .scene2-swirls {
@@ -208,34 +208,100 @@
     .swirl-zone {
       position: absolute;
       left: 50%;
-      top: 52%;
-      width: 420px;
-      height: 220px;
+      top: 56%;
+      width: 360px;
+      height: 170px;
       transform: translateX(-50%);
       pointer-events: none;
     }
 
-    .wind-streak,
+    .css-wind {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255,255,255,0.05) 10%,
+        rgba(255,255,255,0.28) 35%,
+        rgba(255,255,255,0.55) 50%,
+        rgba(255,255,255,0.22) 75%,
+        transparent 100%
+      );
+      filter: blur(0.2px);
+      transform-origin: center center;
+    }
+
+    .css-wind::after {
+      content: "";
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      width: 24px;
+      height: 18px;
+      border-top: 2px solid rgba(255,255,255,0.34);
+      border-radius: 50%;
+      transform: translateY(-50%) rotate(10deg);
+      opacity: 0.75;
+    }
+
+    .wind-a {
+      width: 150px;
+      animation: swirlWindA 4.2s linear infinite;
+    }
+
+    .wind-b {
+      width: 120px;
+      animation: swirlWindB 3.6s linear infinite 0.8s;
+    }
+
+    .wind-c {
+      width: 96px;
+      animation: swirlWindC 3.1s linear infinite 1.4s;
+    }
+
+    .wind-d {
+      width: 76px;
+      animation: swirlWindD 2.7s linear infinite 0.3s;
+    }
+
+    @keyframes swirlWindA {
+      0%   { transform: translate(-120px, 28px) rotate(4deg); opacity: 0; }
+      12%  { opacity: 0.6; }
+      50%  { transform: translate(0px, -10px) rotate(10deg); opacity: 0.82; }
+      100% { transform: translate(132px, 18px) rotate(18deg); opacity: 0; }
+    }
+
+    @keyframes swirlWindB {
+      0%   { transform: translate(112px, 22px) rotate(180deg); opacity: 0; }
+      12%  { opacity: 0.54; }
+      50%  { transform: translate(4px, -6px) rotate(194deg); opacity: 0.72; }
+      100% { transform: translate(-118px, 24px) rotate(208deg); opacity: 0; }
+    }
+
+    @keyframes swirlWindC {
+      0%   { transform: translate(-72px, 44px) rotate(-2deg); opacity: 0; }
+      12%  { opacity: 0.46; }
+      50%  { transform: translate(16px, 6px) rotate(4deg); opacity: 0.64; }
+      100% { transform: translate(88px, 32px) rotate(10deg); opacity: 0; }
+    }
+
+    @keyframes swirlWindD {
+      0%   { transform: translate(64px, 50px) rotate(12deg); opacity: 0; }
+      12%  { opacity: 0.42; }
+      50%  { transform: translate(-8px, 12px) rotate(18deg); opacity: 0.58; }
+      100% { transform: translate(-84px, 42px) rotate(24deg); opacity: 0; }
+    }
+
     .leaf-swirl {
       position: absolute;
       left: 50%;
       top: 50%;
       transform-origin: center center;
-    }
-
-    .wind-streak {
-      opacity: 0.75;
-      filter: brightness(1.08);
-    }
-
-    .leaf-swirl {
       opacity: 0.86;
     }
-
-    .wind-a { width: 150px; animation: orbitA 5.2s linear infinite; }
-    .wind-b { width: 130px; animation: orbitB 4.6s linear infinite; }
-    .wind-c { width: 120px; animation: orbitC 3.8s linear infinite; }
-    .wind-d { width: 92px;  animation: orbitD 3.1s linear infinite; }
 
     .leaf-a { width: 18px; animation: leafOrbitA 4.7s linear infinite; }
     .leaf-b { width: 20px; animation: leafOrbitB 5.3s linear infinite; }
@@ -243,34 +309,6 @@
     .leaf-d { width: 22px; animation: leafOrbitD 5.8s linear infinite; }
     .leaf-e { width: 14px; animation: leafOrbitE 3.9s linear infinite; }
     .leaf-f { width: 18px; animation: leafOrbitF 4.9s linear infinite; }
-
-    @keyframes orbitA {
-      0%   { transform: translate(-130px, 20px) rotate(0deg); opacity: 0; }
-      15%  { opacity: 0.72; }
-      50%  { transform: translate(0px, -8px) rotate(10deg); opacity: 0.82; }
-      100% { transform: translate(150px, 18px) rotate(18deg); opacity: 0; }
-    }
-
-    @keyframes orbitB {
-      0%   { transform: translate(120px, 26px) rotate(180deg); opacity: 0; }
-      15%  { opacity: 0.62; }
-      50%  { transform: translate(6px, -14px) rotate(196deg); opacity: 0.76; }
-      100% { transform: translate(-130px, 24px) rotate(208deg); opacity: 0; }
-    }
-
-    @keyframes orbitC {
-      0%   { transform: translate(-80px, 45px) rotate(-6deg); opacity: 0; }
-      15%  { opacity: 0.56; }
-      50%  { transform: translate(18px, 0px) rotate(4deg); opacity: 0.68; }
-      100% { transform: translate(102px, 34px) rotate(10deg); opacity: 0; }
-    }
-
-    @keyframes orbitD {
-      0%   { transform: translate(70px, 50px) rotate(12deg); opacity: 0; }
-      15%  { opacity: 0.44; }
-      50%  { transform: translate(-4px, 2px) rotate(20deg); opacity: 0.58; }
-      100% { transform: translate(-92px, 46px) rotate(26deg); opacity: 0; }
-    }
 
     @keyframes leafOrbitA {
       0%   { transform: translate(-118px, 14px) rotate(0deg); opacity: 0; }
@@ -536,9 +574,9 @@
       }
 
       .swirl-zone {
-        width: 320px;
-        height: 180px;
-        top: 56%;
+        width: 300px;
+        height: 150px;
+        top: 58%;
       }
     }
 
@@ -553,8 +591,8 @@
       }
 
       .apollo-img {
-        width: 90vw;
-        top: 12%;
+        width: 78vw;
+        top: 16%;
       }
 
       .story-text {
@@ -573,9 +611,9 @@
       }
 
       .swirl-zone {
-        width: 260px;
-        height: 150px;
-        top: 58%;
+        width: 240px;
+        height: 130px;
+        top: 60%;
       }
     }
   </style>
@@ -611,10 +649,10 @@
 
     <div class="scene2-swirls" id="scene2Swirls">
       <div class="swirl-zone">
-        <img src="assets/effects/wind/wind1.png" alt="" class="wind-streak wind-a">
-        <img src="assets/effects/wind/wind2.png" alt="" class="wind-streak wind-b">
-        <img src="assets/effects/wind/wind3.png" alt="" class="wind-streak wind-c">
-        <img src="assets/effects/wind/wind4.png" alt="" class="wind-streak wind-d">
+        <div class="css-wind wind-a"></div>
+        <div class="css-wind wind-b"></div>
+        <div class="css-wind wind-c"></div>
+        <div class="css-wind wind-d"></div>
 
         <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf-swirl leaf-a">
         <img src="assets/effects/leaves/leaf2.png" alt="" class="leaf-swirl leaf-b">
