@@ -219,7 +219,7 @@
     .scene2-flow {
       position: absolute;
       inset: 0;
-      z-index: 20;
+      z-index: 35;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
@@ -424,23 +424,18 @@
       transition: 1s ease 0.2s;
     }
 
-    .button,
-    .continue-btn {
+    .button {
       margin-top: 32px;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
-    }
-
-    .button {
       opacity: 0;
       transform: translateY(10px);
       transition: 1s ease 0.4s;
     }
 
-    .button-inner,
-    .continue-inner {
+    .button-inner {
       position: relative;
       display: inline-block;
       min-width: 150px;
@@ -458,8 +453,7 @@
       overflow: hidden;
     }
 
-    .button-inner::before,
-    .continue-inner::before {
+    .button-inner::before {
       content: "";
       position: absolute;
       inset: 6px;
@@ -468,8 +462,7 @@
       pointer-events: none;
     }
 
-    .button-inner::after,
-    .continue-inner::after {
+    .button-inner::after {
       content: "✦";
       position: absolute;
       right: 12px;
@@ -480,8 +473,7 @@
       opacity: 0.85;
     }
 
-    .button:hover .button-inner,
-    .continue-btn:hover .continue-inner {
+    .button:hover .button-inner {
       background: #ebe6d6;
       transform: translateY(-2px);
       box-shadow:
@@ -578,18 +570,6 @@
       transform: translateY(-1px);
     }
 
-    .continue-wrap {
-      margin-top: 16px;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: 0.4s ease;
-    }
-
-    .continue-wrap.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     @media (max-width: 900px) {
       .choices {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -616,7 +596,8 @@
         width: 145%;
       }
 
-      .apollo-img {
+      .apollo-img,
+      .damsel-img {
         width: 78vw;
         top: 16%;
       }
@@ -673,6 +654,10 @@
       <img src="Apollo.png" alt="" class="apollo-img">
     </div>
 
+    <div class="damsel-overlay" id="damselOverlay">
+      <img src="damsel.png" alt="" class="damsel-img">
+    </div>
+
     <div class="scene2-flow" id="scene2Flow">
       <div class="flow-zone">
         <div class="dust-swirl dust-a"></div>
@@ -718,7 +703,8 @@
     const PATHS = {
       loadingBg: "loading-bg.png",
       scene1Bg: "scene1-bg.png",
-      scene2Bg: "scene2-bg.jpeg"
+      scene2Bg: "scene2-bg.jpeg",
+      scene3Bg: "scene3-bg.jpeg"
     };
 
     const loading = document.getElementById("loading");
@@ -731,6 +717,7 @@
     const mist = document.getElementById("mist");
     const particles = document.getElementById("particles");
     const apolloOverlay = document.getElementById("apolloOverlay");
+    const damselOverlay = document.getElementById("damselOverlay");
     const scene2Flow = document.getElementById("scene2Flow");
 
     const scores = JSON.parse(localStorage.getItem("plcOriginScores")) || {
@@ -784,6 +771,7 @@
       branches.classList.add("show");
       mist.classList.add("show");
       apolloOverlay.classList.remove("show");
+      damselOverlay.classList.remove("show");
       scene2Flow.classList.remove("show");
       softenParticles();
 
@@ -828,6 +816,7 @@
       branches.classList.add("show");
       mist.classList.add("show");
       apolloOverlay.classList.add("show");
+      damselOverlay.classList.remove("show");
       scene2Flow.classList.add("show");
       softenParticles();
 
@@ -845,12 +834,6 @@
             <button class="choice-btn" data-archetype="trickster">E. Make your presence known. If something is out there, you would rather it react to you.</button>
             <button class="choice-btn" data-archetype="sage">F. Hold your position and wait. Acting too soon would tell you less than staying still.</button>
           </div>
-
-          <div class="continue-wrap" id="continueWrap">
-            <button class="continue-btn" type="button">
-              <span class="continue-inner">Continue</span>
-            </button>
-          </div>
         </div>
       `;
 
@@ -866,18 +849,44 @@
       document.querySelectorAll(".choice-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           applyChoice(btn.dataset.archetype, btn, () => {
-            const continueWrap = document.getElementById("continueWrap");
-            if (continueWrap) continueWrap.classList.add("show");
+            content.classList.add("fade-out");
+            setTimeout(renderScene3, 550);
           });
         });
       });
+    }
 
-      const continueBtn = document.querySelector(".continue-btn");
-      if (continueBtn) {
-        continueBtn.addEventListener("click", () => {
-          console.log("Ready for Scene 3. Current PLC Origin scores:", scores);
-        });
-      }
+    function renderScene3() {
+      setBackground(PATHS.scene3Bg, "0.46");
+      branches.classList.add("show");
+      mist.classList.add("show");
+      apolloOverlay.classList.remove("show");
+      scene2Flow.classList.remove("show");
+      damselOverlay.classList.add("show");
+      softenParticles();
+
+      content.innerHTML = `
+        <div class="story-wrap">
+          <div class="story-text" id="story">
+            The path opens again, but only just. Something waits ahead, still and impossible, framed by the dark as if the woods themselves meant for you to find it. You stop. Not because you are afraid. Because suddenly it feels like the story is waiting to see what kind of person you are.
+          </div>
+
+          <div class="choices">
+            <button class="choice-btn">Scene 3 is loaded. Add your final approved text and choices here.</button>
+          </div>
+        </div>
+      `;
+
+      const story = document.getElementById("story");
+
+      setTimeout(() => {
+        content.classList.remove("fade-out");
+        content.classList.add("story-mode");
+        story.style.opacity = "1";
+        story.style.transform = "translateY(0)";
+      }, 120);
+
+      console.log("Scene 3 loaded. Current PLC Origin scores:", scores);
     }
 
     setBackground(PATHS.loadingBg, "0.58");
