@@ -28,86 +28,6 @@
       background: #000;
     }
 
-    /* Core UI Layout (Added missing styles to ensure proper flow and scrolling) */
-    .content {
-      position: absolute;
-      inset: 0;
-      z-index: 50;
-      overflow-y: auto; /* Crucial for spreading items vertically and scrolling */
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .story-wrap {
-      width: 100%;
-      max-width: 800px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: auto;
-    }
-
-    .story-text {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      background: rgba(0,0,0,0.65);
-      padding: 24px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
-    }
-
-    .choices {
-      display: grid;
-      gap: 12px;
-      width: 100%;
-    }
-
-    .choice-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #f5f2e8;
-      padding: 16px;
-      font-size: 1rem;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: background 0.3s, color 0.3s;
-      text-align: left;
-      font-family: inherit;
-    }
-
-    .choice-btn:hover { background: rgba(255,255,255,0.15); }
-    .choice-btn.selected { background: #f5f2e8; color: #000; }
-
-    .title { font-size: 2.5rem; text-align: center; margin-bottom: 8px; opacity: 0; transition: opacity 1s; }
-    .subtitle { font-size: 1.2rem; text-align: center; margin-bottom: 32px; opacity: 0; transition: opacity 1s; }
-    .title.show, .subtitle.show { opacity: 1; }
-
-    .button {
-      padding: 12px 32px;
-      font-size: 1.2rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid #f5f2e8;
-      color: #f5f2e8;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.3s;
-      border-radius: 6px;
-      font-family: inherit;
-    }
-    .button.show { opacity: 1; }
-    .button:hover { background: #f5f2e8; color: #000; }
-
-    .loading { position: absolute; font-size: 1.5rem; transition: opacity 1s; top: 45vh;}
-    .fade-out { opacity: 0 !important; pointer-events: none; }
-    /* End of Core UI */
-
     .bg {
       position: absolute;
       inset: -2%;
@@ -370,18 +290,16 @@
       100% { transform: translateX(-50%) translateY(0px); }
     }
 
-    /* Adjusted Results Avatar CSS to prevent overlap */
-    .result-img, .result-motion-img {
+    .result-img {
       position: absolute;
       left: 50%;
       top: 6vh;
-      height: 40vh; /* Constrain by height instead of width */
+      height: 40vh;
       width: auto;
       max-width: 90vw;
       transform: translateX(-50%);
       opacity: 0.95;
       transform-origin: center center;
-      object-fit: contain;
     }
 
     .result-img.breathe {
@@ -395,6 +313,14 @@
     }
 
     .result-motion-img {
+      position: absolute;
+      left: 50%;
+      top: 6vh;
+      height: 40vh;
+      width: auto;
+      max-width: 90vw;
+      transform: translateX(-50%);
+      opacity: 0.94;
       animation: resultMotionFloat 3.8s ease-in-out infinite;
     }
 
@@ -730,23 +656,28 @@
       .choices {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
       .choice-btn {
         min-height: 108px;
       }
+
       .dragon-img {
         width: 86vw;
         top: 17%;
       }
+
       .wings-img {
         width: 116vw;
         left: 61%;
         top: 9%;
       }
+
       .transition-g,
       .transition-ana {
         width: min(24vw, 220px);
         top: 34%;
       }
+
       .motion-arc {
         top: 34%;
         width: min(62vw, 560px);
@@ -758,52 +689,68 @@
         padding-top: 4vh;
         padding-bottom: 4vh;
       }
+
       .branch-img {
         width: 145%;
       }
+
       .apollo-img,
       .damsel-img {
         width: 78vw;
         top: 16%;
       }
+
       .dragon-img {
         width: 100vw;
         top: 22%;
       }
+
       .wings-img {
         width: 128vw;
         left: 61%;
         top: 15%;
       }
+
       .transition-g {
         left: 26%;
         width: 26vw;
         top: 38%;
       }
+
       .transition-ana {
         left: 74%;
         width: 26vw;
         top: 38%;
       }
-      .story-text {
+
+      .story-text,
+      .results-box {
         font-size: 1rem;
         padding: 18px;
       }
+
       .choices {
         grid-template-columns: 1fr;
         width: min(680px, 92vw);
       }
+
       .choice-btn {
         min-height: auto;
         font-size: 0.92rem;
       }
+
       .coin-rise {
         transform: translateX(86px);
       }
+
       .motion-arc {
         top: 36%;
         width: 84vw;
         height: 34vh;
+      }
+
+      .button {
+        margin-top: 42px;
       }
     }
   </style>
@@ -916,21 +863,17 @@
         Loading your path...
       </div>
 
-      <div style="margin: auto;">
-        <h1 class="title" id="title">
-          What Is Your PLC Origin Story?
-        </h1>
+      <h1 class="title" id="title">
+        What Is Your PLC Origin Story?
+      </h1>
 
-        <div class="subtitle" id="subtitle">
-          The path begins behind Lake Claire.
-        </div>
-
-        <div style="text-align: center;">
-          <button class="button" id="begin" type="button">
-            <span class="button-inner">Begin</span>
-          </button>
-        </div>
+      <div class="subtitle" id="subtitle">
+        The path begins behind Lake Claire.
       </div>
+
+      <button class="button" id="begin" type="button">
+        <span class="button-inner">Begin</span>
+      </button>
     </div>
   </div>
 
@@ -1344,7 +1287,7 @@
       softenParticles();
 
       content.innerHTML = `
-        <div class="story-wrap" style="justify-content:center; min-height: 100%;">
+        <div class="story-wrap" style="justify-content:center;">
           <div class="story-text" id="story" style="max-width:640px; text-align:center;">
             “Congratulations on completing your journey, PLCer.”
             <br><br>
@@ -1405,22 +1348,22 @@
         resultEffectOverlay.classList.add("show");
       }
 
-      // Structured layout to perfectly spread the text and button safely beneath the avatar
+      // We wrap ONLY the results content in a scrolling div to prevent overlap, leaving your base CSS untouched
       content.innerHTML = `
-        <div class="story-wrap" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh;">
+        <div class="story-wrap" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow-y: auto; overflow-x: hidden; z-index: 60; padding-bottom: 40px;">
+          <div style="height: 48vh; pointer-events: none;"></div>
           
-          <div class="results-box" style="margin-top: 48vh; background: rgba(0,0,0,0.75); padding: 32px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15); max-width: 640px; text-align: center; backdrop-filter: blur(8px);">
-            <h2 style="margin-top: 0; font-size: 2.2rem; margin-bottom: 16px;">You’re a ${cfg.title}</h2>
-            <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 24px;">${cfg.desc}</p>
-            <p class="tagline" style="font-style: italic; font-size: 1.05rem;"><strong>Tagline:</strong><br>${cfg.tagline}</p>
+          <div class="results-box" style="margin: 0 auto; max-width: 600px; padding: 0 20px;">
+            <h2>You’re a ${cfg.title}</h2>
+            <p>${cfg.desc}</p>
+            <p class="tagline"><strong>Tagline:</strong><br>${cfg.tagline}</p>
           </div>
 
-          <div style="margin-top: 32px; margin-bottom: 64px; position: relative; z-index: 60;">
-            <button class="button show" id="restartBtn" type="button" style="opacity: 1; transform: none;">
+          <div style="margin-top:34px; margin-bottom:36px; position:relative; z-index:60; text-align: center;">
+            <button class="button show" id="restartBtn" type="button" style="opacity:1; transform:none;">
               <span class="button-inner">Take the path again</span>
             </button>
           </div>
-
         </div>
       `;
 
