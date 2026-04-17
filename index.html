@@ -24,7 +24,7 @@
       position: relative;
       width: 100vw;
       height: 100vh;
-      over: hidden;
+      overflow: hidden;
       background: #000;
     }
 
@@ -54,7 +54,7 @@
       inset: 0;
       z-index: 3;
       pointer-events: none;
-      over: hidden;
+      overflow: hidden;
     }
 
     .particle {
@@ -98,7 +98,7 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
-      over: hidden;
+      overflow: hidden;
     }
 
     .branches.show {
@@ -177,7 +177,7 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
-      over: hidden;
+      overflow: hidden;
     }
 
     .apollo-overlay.show {
@@ -193,24 +193,46 @@
       opacity: 0.78;
     }
 
-    /* FIXED: raised z-index hard so leaves definitely sit on top */
-    .scene2- {
+    .damsel-overlay {
       position: absolute;
       inset: 0;
-      z-index: 35;
+      z-index: 18;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      overflow: hidden;
+    }
+
+    .damsel-overlay.show {
+      opacity: 1;
+    }
+
+    .damsel-img {
+      position: absolute;
+      left: 50%;
+      top: 18%;
+      width: min(34vw, 420px);
+      transform: translateX(-50%);
+      opacity: 0.86;
+    }
+
+    .scene2-flow {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
     }
 
-    .scene2-.show {
+    .scene2-flow.show {
       opacity: 1;
     }
 
     .flow-zone {
       position: absolute;
       left: 50%;
-      top: 62%;
+      top: 68%;
       width: 320px;
       height: 140px;
       transform: translateX(-50%);
@@ -295,7 +317,6 @@
       100% { transform: translate(-110px, 14px) scale(0.6); opacity: 0; }
     }
 
-    /* FIXED: explicit z-index on leaves too */
     .leaf-swirl {
       position: absolute;
       left: 50%;
@@ -512,6 +533,8 @@
       gap: 12px;
       margin-top: auto;
       padding-top: 18px;
+      position: relative;
+      z-index: 60;
     }
 
     .choice-btn {
