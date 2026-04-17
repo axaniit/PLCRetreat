@@ -75,13 +75,13 @@
     }
 
     .scene-particle {
-      background: rgba(245, 245, 245, 0.40);
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.16);
+      background: rgba(245,245,245,0.40);
+      box-shadow: 0 0 6px rgba(255,255,255,0.16);
     }
 
     .scene-particle.soft {
-      background: rgba(245, 245, 245, 0.24);
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.10);
+      background: rgba(245,245,245,0.24);
+      box-shadow: 0 0 4px rgba(255,255,255,0.10);
     }
 
     @keyframes driftUp {
@@ -247,11 +247,11 @@
     .wings-img {
       position: absolute;
       left: 60%;
-      top: 4%;
-      width: min(100vw, 1560px);
+      top: 2%;
+      width: min(108vw, 1680px);
       transform: translateX(-50%);
       transform-origin: center 74%;
-      opacity: 0.90;
+      opacity: 0.9;
       animation: flapWings 4.2s ease-in-out infinite;
     }
 
@@ -559,108 +559,6 @@
       100% { transform: translate(-96px, 42px) rotate(300deg); opacity: 0; }
     }
 
-    .scene4-fire {
-      position: absolute;
-      inset: 0;
-      z-index: 22;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
-
-    .scene4-fire.show {
-      opacity: 1;
-    }
-
-    .scene5-water {
-      position: absolute;
-      inset: 0;
-      z-index: 20;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.7s ease;
-    }
-
-    .scene5-water.show {
-      opacity: 1;
-    }
-
-    .scene5-light.show {
-      opacity: 1;
-    }
-
-    .beam-light {
-      position: absolute;
-      left: 50%;
-      top: -4%;
-      width: min(22vw, 260px);
-      height: 78vh;
-      transform: translateX(-50%);
-      background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.28) 0%,
-        rgba(255,255,255,0.16) 18%,
-        rgba(255,255,255,0.08) 50%,
-        rgba(255,255,255,0.00) 100%
-      );
-      clip-path: polygon(38% 0%, 62% 0%, 82% 100%, 18% 100%);
-      filter: blur(10px);
-      opacity: 0.55;
-      animation: beamPulse 5.5s ease-in-out infinite;
-    }
-
-    .beam-dust-zone {
-      position: absolute;
-      left: 50%;
-      top: 18%;
-      width: 180px;
-      height: 350px;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .beam-dust {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.72);
-      box-shadow: 0 0 6px rgba(255,255,255,0.18);
-      opacity: 0;
-    }
-
-    .bd1  { left: 22%; top: 10%; animation: beamDust1 4.0s ease-in-out infinite; }
-    .bd2  { left: 37%; top: 18%; animation: beamDust2 4.6s ease-in-out infinite 0.4s; }
-    .bd3  { left: 50%; top: 8%;  animation: beamDust3 4.3s ease-in-out infinite 0.8s; }
-    .bd4  { left: 64%; top: 20%; animation: beamDust4 4.8s ease-in-out infinite 1.1s; }
-    .bd5  { left: 74%; top: 14%; animation: beamDust5 4.1s ease-in-out infinite 0.6s; }
-    .bd6  { left: 28%; top: 32%; animation: beamDust6 4.9s ease-in-out infinite 0.9s; }
-    .bd7  { left: 44%; top: 40%; animation: beamDust7 4.2s ease-in-out infinite 0.2s; }
-    .bd8  { left: 58%; top: 36%; animation: beamDust8 5.1s ease-in-out infinite 1.0s; }
-    .bd9  { left: 69%; top: 48%; animation: beamDust9 4.5s ease-in-out infinite 0.3s; }
-    .bd10 { left: 34%; top: 58%; animation: beamDust10 4.7s ease-in-out infinite 1.2s; }
-    .bd11 { left: 52%; top: 65%; animation: beamDust11 4.1s ease-in-out infinite 0.7s; }
-    .bd12 { left: 66%; top: 72%; animation: beamDust12 4.9s ease-in-out infinite 1.4s; }
-
-    @keyframes beamPulse {
-      0% { opacity: 0.42; transform: translateX(-50%) scaleX(0.96); }
-      50% { opacity: 0.64; transform: translateX(-50%) scaleX(1.04); }
-      100% { opacity: 0.42; transform: translateX(-50%) scaleX(0.96); }
-    }
-
-    @keyframes beamDust1  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .6; } 100% { transform: translate(8px,-16px); opacity: 0; } }
-    @keyframes beamDust2  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .56; } 100% { transform: translate(-6px,-18px); opacity: 0; } }
-    @keyframes beamDust3  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .62; } 100% { transform: translate(5px,-20px); opacity: 0; } }
-    @keyframes beamDust4  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .58; } 100% { transform: translate(-7px,-17px); opacity: 0; } }
-    @keyframes beamDust5  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .54; } 100% { transform: translate(6px,-15px); opacity: 0; } }
-    @keyframes beamDust6  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .6; } 100% { transform: translate(-8px,-22px); opacity: 0; } }
-    @keyframes beamDust7  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .57; } 100% { transform: translate(7px,-18px); opacity: 0; } }
-    @keyframes beamDust8  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .55; } 100% { transform: translate(-5px,-21px); opacity: 0; } }
-    @keyframes beamDust9  { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .6; } 100% { transform: translate(4px,-14px); opacity: 0; } }
-    @keyframes beamDust10 { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .58; } 100% { transform: translate(-7px,-16px); opacity: 0; } }
-    @keyframes beamDust11 { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .62; } 100% { transform: translate(5px,-18px); opacity: 0; } }
-    @keyframes beamDust12 { 0% { transform: translate(0,0); opacity: 0; } 20% { opacity: .56; } 100% { transform: translate(-6px,-20px); opacity: 0; } }
-
     .content {
       position: absolute;
       inset: 0;
@@ -825,22 +723,20 @@
     }
 
     .results-box h2 {
-      margin: 0 0 10px 0;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin: 0 0 12px 0;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
       text-align: center;
     }
 
     .results-box p {
-      margin: 0 0 12px 0;
-      line-height: 1.65;
+      margin: 0 0 14px 0;
+      line-height: 1.68;
     }
 
-    .scores-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 8px 18px;
-      margin-top: 12px;
-      font-size: 0.95rem;
+    .tagline {
+      text-align: center;
+      font-style: italic;
+      margin-top: 14px;
     }
 
     .choices {
@@ -987,21 +883,15 @@
         min-height: 108px;
       }
 
-      .flow-zone {
-        width: 280px;
-        height: 120px;
-        top: 60%;
-      }
-
       .dragon-img {
         width: 86vw;
         top: 17%;
       }
 
       .wings-img {
-        width: 110vw;
+        width: 116vw;
         left: 61%;
-        top: 10%;
+        top: 9%;
       }
 
       .transition-g,
@@ -1012,10 +902,6 @@
       .result-img,
       .result-motion-img {
         width: min(52vw, 480px);
-      }
-
-      .scores-list {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -1043,9 +929,9 @@
       }
 
       .wings-img {
-        width: 122vw;
+        width: 128vw;
         left: 61%;
-        top: 16%;
+        top: 15%;
       }
 
       .transition-g {
@@ -1077,16 +963,6 @@
       .coin-rise {
         transform: translateX(86px);
       }
-
-      .beam-light {
-        width: 34vw;
-        height: 72vh;
-      }
-
-      .beam-dust-zone {
-        width: 130px;
-        height: 300px;
-      }
     }
   </style>
 </head>
@@ -1112,7 +988,7 @@
     <div class="mist" id="mist"></div>
 
     <div class="branches" id="branches">
-      <img src="assets/overlays/scene1-branches.png" alt="" class="branch-img">
+      <img src="scene1-branches.png" alt="" class="branch-img">
     </div>
 
     <div class="apollo-overlay" id="apolloOverlay">
@@ -1155,12 +1031,12 @@
         <div class="dust-swirl dust-g"></div>
         <div class="dust-swirl dust-h"></div>
 
-        <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf-swirl leaf-a">
-        <img src="assets/effects/leaves/leaf2.png" alt="" class="leaf-swirl leaf-b">
-        <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf-swirl leaf-c">
-        <img src="assets/effects/leaves/leaf4.png" alt="" class="leaf-swirl leaf-d">
-        <img src="assets/effects/leaves/leaf1.png" alt="" class="leaf-swirl leaf-e">
-        <img src="assets/effects/leaves/leaf3.png" alt="" class="leaf-swirl leaf-f">
+        <img src="leaf1.png" alt="" class="leaf-swirl leaf-a">
+        <img src="leaf2.png" alt="" class="leaf-swirl leaf-b">
+        <img src="leaf3.png" alt="" class="leaf-swirl leaf-c">
+        <img src="leaf4.png" alt="" class="leaf-swirl leaf-d">
+        <img src="leaf1.png" alt="" class="leaf-swirl leaf-e">
+        <img src="leaf3.png" alt="" class="leaf-swirl leaf-f">
       </div>
     </div>
 
@@ -1219,50 +1095,54 @@
       scene2Bg: "scene2-bg.jpeg",
       scene3Bg: "scene3-bg.jpeg",
       scene4Bg: "scene2-bg.jpeg",
-      scene5Bg: "scene5-bg.jpeg",
-      transitionBg: "blank-bg.png",
-      resultsBg: "blank-bg.png"
+      scene5Bg: "scene5-bg.jpeg"
     };
 
     const RESULT_CONFIG = {
       hero: {
         title: "Hero",
-        desc: "You move toward what needs facing. Even when the path narrows, your instinct is to act, protect, and keep going. You do not wait for certainty to appear. You become the certainty other people stand behind.",
+        desc: "You step forward when something needs to be done. Even when it would be easier to wait, or to let someone else take the lead, you choose to act. You are guided by a strong sense of what is right, and that sense does not waver when things become uncertain or difficult. You do not need recognition to keep going. What matters to you is that something is done, and done well. Others rely on that, whether they say it or not.",
+        tagline: "The one who chooses to do what is right, even when it is difficult.",
         base: "hero.png",
         motion: null,
         effect: "breathing"
       },
       antihero: {
         title: "Antihero",
-        desc: "You do not accept the path at face value. You question, examine, and refuse easy narratives. You move carefully, but not passively. You want to know what something is before you decide whether it deserves your trust.",
+        desc: "You do not take things as they are simply because they have always been that way. When something feels incomplete, inconsistent, or unquestioned, you examine it more closely. You are willing to challenge ideas, expectations, and structures if they do not hold up. This can create tension, but it also creates clarity. You are not interested in going against something just to stand apart. You are interested in making sure that what people follow is actually worth following.",
+        tagline: "The one who does not accept things at face value and refuses to follow what is wrong.",
         base: "antihero.png",
         motion: "antihero-motion.png",
         effect: "motion"
       },
       sorcerer: {
         title: "Sorcerer",
-        desc: "You notice patterns that other people miss. Meaning reveals itself to you through stillness, observation, and intuition. You are less interested in forcing a moment than in understanding its hidden structure.",
+        desc: "You notice what others move past, but you do not stop at noticing it. You take the time to understand it. Patterns, shifts, and details that seem small to others are things you follow until they make sense. Because of that, your understanding goes deeper than what is immediately visible. You are able to interpret what is happening and respond to it with intention. This allows you to move differently and to guide those aligned with you with clarity. You do not just see more. You understand more, and that understanding shapes what you do next.",
+        tagline: "The one who understands what others do not yet see.",
         base: "sorcerer.png",
         motion: "sorcerer-motion.png",
         effect: "motion"
       },
       alchemist: {
         title: "Alchemist",
-        desc: "You look for what can be used, changed, or improved. Where other people see a problem, you see material. You think in systems, tools, and possibilities. Your strength is not only insight. It is adaptation.",
+        desc: "You have a way of understanding how things work, even when they are not fully explained. When something is off, unfinished, or not working the way it should, you know how to adjust it. You work with what is in front of you and shape it into something stronger, often without needing recognition for it. You are focused, absorbed, and driven by the outcome more than the attention it brings. What you create reflects both instinct and care. You do not just improve things because you can. You do it because it matters, because you care.",
+        tagline: "The one who knows how to make things better and does.",
         base: "alchemist.png",
         motion: null,
         effect: "breathing"
       },
       trickster: {
         title: "Trickster",
-        desc: "You shift the temperature of a room the moment you enter it. You understand attention, tension, and timing. Humor is not avoidance for you. It is strategy. You know how to change what happens by changing where people look.",
+        desc: "You have a sense for what a moment needs, even when no one says it out loud. When something feels too tense, too quiet, or too fixed, you shift it. Sometimes that looks like humor, sometimes like distraction, but it is rarely accidental. You understand how people and energy move through a space, and you know how to adjust it without making it obvious. What others might see as chaos is often your way of keeping things from becoming stuck. You do not need credit for it. You just know when something needs to change, and you change it.",
+        tagline: "The one who knows when to tip the balance.",
         base: "trickster.png",
         motion: null,
         effect: "coin"
       },
       sage: {
         title: "Sage",
-        desc: "You know the value of waiting, listening, and remembering clearly. You are not passive. You are deliberate. When a moment matters, you want to understand it well enough to keep it, learn from it, and carry it forward.",
+        desc: "You are someone people turn to when they are unsure. You take the time to understand what is actually going on, not just what is being said, and you respond with that in mind. You care about the people you guide, and that shows in the way you pay attention, the way you listen, and the way you choose your words. You are direct, but not careless. You want people to grow, not just feel better in the moment. You do not tell people what they want to hear. You tell them what they need to hear. That can make you seem harsh at times, but your intention is never to put someone down. You push people to be better because you know they can be. You are steady, honest, and willing to stand with someone while they figure things out, no matter how long it takes.",
+        tagline: "The one who understands what matters and reminds you of it when you need it.",
         base: "sage.png",
         motion: null,
         effect: "breathing"
@@ -1313,6 +1193,28 @@
         ),
         url("${path}")
       `;
+      bg.style.filter = "brightness(0.92)";
+    }
+
+    function setPatternBackground() {
+      bg.style.backgroundImage = `
+        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255,255,255,0.06) 0px,
+          rgba(255,255,255,0.06) 2px,
+          rgba(0,0,0,0.0) 2px,
+          rgba(0,0,0,0.0) 10px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(255,255,255,0.025) 0px,
+          rgba(255,255,255,0.025) 1px,
+          rgba(0,0,0,0.0) 1px,
+          rgba(0,0,0,0.0) 12px
+        )
+      `;
+      bg.style.filter = "brightness(1)";
     }
 
     function applyChoice(archetype, buttonEl, onComplete) {
@@ -1581,7 +1483,7 @@
     }
 
     function renderTransition() {
-      setBackground(PATHS.transitionBg, "0.44");
+      setPatternBackground();
       branches.classList.remove("show");
       mist.classList.add("show");
       clearOverlays();
@@ -1621,7 +1523,7 @@
       const winner = getWinningArchetype();
       const cfg = RESULT_CONFIG[winner];
 
-      setBackground(PATHS.resultsBg, "0.50");
+      setPatternBackground();
       branches.classList.remove("show");
       mist.classList.add("show");
       clearOverlays();
@@ -1654,22 +1556,18 @@
         resultEffectOverlay.classList.add("show");
       }
 
-      const ordered = ["hero", "antihero", "sorcerer", "alchemist", "trickster", "sage"];
-      const scoreRows = ordered.map(k => `<div><strong>${RESULT_CONFIG[k].title}:</strong> ${scores[k]}</div>`).join("");
-
       content.innerHTML = `
         <div class="story-wrap">
-          <div class="results-box" id="resultsBox">
-            <h2>Your PLC Origin: ${cfg.title}</h2>
+          <div class="results-box">
+            <h2>You’re a ${cfg.title}</h2>
             <p>${cfg.desc}</p>
-            <div class="scores-list">
-              ${scoreRows}
-            </div>
+            <p style="text-align:center; margin-top:18px;">[Avatar Displayed]</p>
+            <p class="tagline"><strong>Tagline:</strong><br>${cfg.tagline}</p>
           </div>
 
           <div style="margin-top:18px; position:relative; z-index:60;">
             <button class="button show" id="restartBtn" type="button" style="opacity:1; transform:none;">
-              <span class="button-inner">Restart Journey</span>
+              <span class="button-inner">Take the path again</span>
             </button>
           </div>
         </div>
