@@ -267,7 +267,7 @@
     .transition-g {
       position: absolute;
       left: 28%;
-      top: 22%;
+      top: 30%;
       width: min(20vw, 260px);
       transform: translateX(-50%);
       opacity: 0.95;
@@ -277,7 +277,7 @@
     .transition-ana {
       position: absolute;
       left: 72%;
-      top: 20%;
+      top: 30%;
       width: min(20vw, 260px);
       transform: translateX(-50%);
       opacity: 0.95;
@@ -293,8 +293,8 @@
     .result-img {
       position: absolute;
       left: 50%;
-      top: 15%;
-      width: min(40vw, 520px);
+      top: 24%;
+      width: min(38vw, 480px);
       transform: translateX(-50%);
       opacity: 0.95;
       transform-origin: center center;
@@ -313,8 +313,8 @@
     .result-motion-img {
       position: absolute;
       left: 50%;
-      top: 15%;
-      width: min(42vw, 560px);
+      top: 24%;
+      width: min(40vw, 520px);
       transform: translateX(-50%);
       opacity: 0.94;
       animation: resultMotionFloat 3.8s ease-in-out infinite;
@@ -559,236 +559,10 @@
       100% { transform: translate(-96px, 42px) rotate(300deg); opacity: 0; }
     }
 
-    .content {
-      position: absolute;
-      inset: 0;
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-      transition: opacity 0.6s ease;
-      overflow-y: auto;
-      box-sizing: border-box;
-    }
-
-    .story-mode {
-      justify-content: flex-start;
-      padding-top: 7vh;
-      padding-bottom: 4vh;
-    }
-
-    .loading {
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      color: #c8a64b;
-      margin-bottom: 16px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.45);
-      opacity: 1;
-      transition: opacity 0.8s ease;
-    }
-
-    .title {
-      margin: 0;
-      font-size: clamp(2.1rem, 4vw, 3.4rem);
-      line-height: 1.12;
-      max-width: 850px;
-      color: #f5f2e8;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.58);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: 1s ease;
-    }
-
-    .subtitle {
-      margin-top: 12px;
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #ddd6c2;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.52);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: 1s ease 0.2s;
-    }
-
-    .button {
-      margin-top: 32px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: 1s ease 0.4s;
-    }
-
-    .button-inner {
-      position: relative;
-      display: inline-block;
-      min-width: 150px;
-      padding: 13px 28px;
-      background: #f5f2e8;
-      color: #111;
-      border: 1.5px solid #111;
-      border-radius: 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      box-shadow:
-        0 8px 20px rgba(0,0,0,0.25),
-        inset 0 0 0 1px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-
-    .button-inner::before {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border: 1px dashed #111;
-      border-radius: 9px;
-      pointer-events: none;
-    }
-
-    .button-inner::after {
-      content: "✦";
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      color: #111;
-      opacity: 0.85;
-    }
-
-    .button:hover .button-inner {
-      background: #ebe6d6;
-      transform: translateY(-2px);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,0.35),
-        inset 0 0 0 1px rgba(0,0,0,0.04);
-    }
-
-    .show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .fade-out {
-      opacity: 0;
-    }
-
-    .story-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      max-width: 1100px;
-      width: 100%;
-      min-height: 100%;
-    }
-
-    .story-text {
-      font-size: 1.02rem;
-      max-width: 760px;
-      line-height: 1.68;
-      color: #f5f2e8;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.62);
-      opacity: 0;
-      transform: translateY(12px);
-      transition: 1s ease;
-      margin-bottom: 18px;
-      background: rgba(0, 0, 0, 0.30);
-      border: 1px solid rgba(245, 242, 232, 0.08);
-      border-radius: 16px;
-      padding: 18px 20px;
-      backdrop-filter: blur(1px);
-      box-sizing: border-box;
-      position: relative;
-      z-index: 60;
-    }
-
-    .results-box {
-      max-width: 760px;
-      margin-top: 8px;
-      background: rgba(0,0,0,0.30);
-      border: 1px solid rgba(245,242,232,0.08);
-      border-radius: 16px;
-      padding: 18px 20px;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 60;
-      text-align: left;
-    }
-
-    .results-box h2 {
-      margin: 0 0 12px 0;
-      font-size: clamp(1.7rem, 3vw, 2.3rem);
-      text-align: center;
-    }
-
-    .results-box p {
-      margin: 0 0 14px 0;
-      line-height: 1.68;
-    }
-
     .tagline {
       text-align: center;
       font-style: italic;
       margin-top: 14px;
-    }
-
-    .choices {
-      width: min(980px, 92vw);
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 18px;
-      position: relative;
-      z-index: 60;
-    }
-
-    .choice-btn {
-      position: relative;
-      display: block;
-      width: 100%;
-      min-height: 118px;
-      text-align: left;
-      padding: 14px 16px;
-      background: rgba(245, 242, 232, 0.94);
-      color: #111;
-      border: 1.5px solid #111;
-      border-radius: 12px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 0.9rem;
-      line-height: 1.38;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-      box-sizing: border-box;
-    }
-
-    .choice-btn::before {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border: 1px dashed rgba(17,17,17,0.85);
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-    .choice-btn:hover {
-      background: #ebe6d6;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.24);
-    }
-
-    .choice-btn.selected {
-      background: #ddd6c2;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.30);
-      transform: translateY(-1px);
     }
 
     .result-effect-overlay.show .coin-rise {
@@ -798,7 +572,7 @@
     .coin-rise {
       position: absolute;
       left: 50%;
-      top: 34%;
+      top: 40%;
       width: 44px;
       height: 44px;
       transform: translateX(120px);
@@ -826,10 +600,10 @@
       opacity: 0;
     }
 
-    .od1 { left: 50%; top: 38%; animation: orbitDust1 3.2s linear infinite; }
-    .od2 { left: 50%; top: 38%; animation: orbitDust2 3.8s linear infinite 0.6s; }
-    .od3 { left: 50%; top: 38%; animation: orbitDust3 4.1s linear infinite 1.2s; }
-    .od4 { left: 50%; top: 38%; animation: orbitDust4 3.5s linear infinite 0.9s; }
+    .od1 { left: 50%; top: 44%; animation: orbitDust1 3.2s linear infinite; }
+    .od2 { left: 50%; top: 44%; animation: orbitDust2 3.8s linear infinite 0.6s; }
+    .od3 { left: 50%; top: 44%; animation: orbitDust3 4.1s linear infinite 1.2s; }
+    .od4 { left: 50%; top: 44%; animation: orbitDust4 3.5s linear infinite 0.9s; }
 
     @keyframes orbitDust1 {
       0% { transform: translate(40px,20px); opacity: 0; }
@@ -855,9 +629,9 @@
     .motion-arc {
       position: absolute;
       left: 50%;
-      top: 18%;
-      width: min(52vw, 680px);
-      height: 52vh;
+      top: 28%;
+      width: min(46vw, 620px);
+      height: 40vh;
       transform: translateX(-50%);
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.10);
@@ -897,11 +671,18 @@
       .transition-g,
       .transition-ana {
         width: min(24vw, 220px);
+        top: 34%;
       }
 
       .result-img,
       .result-motion-img {
         width: min(52vw, 480px);
+        top: 28%;
+      }
+
+      .motion-arc {
+        top: 34%;
+        width: min(62vw, 560px);
       }
     }
 
@@ -916,11 +697,15 @@
       }
 
       .apollo-img,
-      .damsel-img,
+      .damsel-img {
+        width: 78vw;
+        top: 16%;
+      }
+
       .result-img,
       .result-motion-img {
         width: 78vw;
-        top: 16%;
+        top: 31%;
       }
 
       .dragon-img {
@@ -937,11 +722,13 @@
       .transition-g {
         left: 26%;
         width: 26vw;
+        top: 38%;
       }
 
       .transition-ana {
         left: 74%;
         width: 26vw;
+        top: 38%;
       }
 
       .story-text,
@@ -962,6 +749,16 @@
 
       .coin-rise {
         transform: translateX(86px);
+      }
+
+      .motion-arc {
+        top: 36%;
+        width: 84vw;
+        height: 34vh;
+      }
+
+      .button {
+        margin-top: 42px;
       }
     }
   </style>
@@ -1095,7 +892,8 @@
       scene2Bg: "scene2-bg.jpeg",
       scene3Bg: "scene3-bg.jpeg",
       scene4Bg: "scene2-bg.jpeg",
-      scene5Bg: "scene5-bg.jpeg"
+      scene5Bg: "scene5-bg.jpeg",
+      blankBg: "blank-bg.png"
     };
 
     const RESULT_CONFIG = {
@@ -1196,24 +994,30 @@
       bg.style.filter = "brightness(0.92)";
     }
 
-    function setPatternBackground() {
+    function setBlankHatchedBackground() {
       bg.style.backgroundImage = `
-        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+        linear-gradient(
+          rgba(0,0,0,0.72),
+          rgba(0,0,0,0.72)
+        ),
+        url("${PATHS.blankBg}"),
         repeating-linear-gradient(
           45deg,
-          rgba(255,255,255,0.06) 0px,
-          rgba(255,255,255,0.06) 2px,
-          rgba(0,0,0,0.0) 2px,
-          rgba(0,0,0,0.0) 10px
+          rgba(255,255,255,0.05) 0px,
+          rgba(255,255,255,0.05) 2px,
+          rgba(0,0,0,0) 2px,
+          rgba(0,0,0,0) 12px
         ),
         repeating-linear-gradient(
           -45deg,
-          rgba(255,255,255,0.025) 0px,
-          rgba(255,255,255,0.025) 1px,
-          rgba(0,0,0,0.0) 1px,
-          rgba(0,0,0,0.0) 12px
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          rgba(0,0,0,0) 1px,
+          rgba(0,0,0,0) 14px
         )
       `;
+      bg.style.backgroundSize = "cover, cover, auto, auto";
+      bg.style.backgroundPosition = "center center, center center, center center, center center";
       bg.style.filter = "brightness(1)";
     }
 
@@ -1483,7 +1287,7 @@
     }
 
     function renderTransition() {
-      setPatternBackground();
+      setBlankHatchedBackground();
       branches.classList.remove("show");
       mist.classList.add("show");
       clearOverlays();
@@ -1498,7 +1302,7 @@
             “You’ve learned more than you probably realize.”
           </div>
 
-          <div style="margin-top:18px; position:relative; z-index:60;">
+          <div style="margin-top:26px; position:relative; z-index:60;">
             <button class="button show" id="toResults" type="button" style="opacity:1; transform:none;">
               <span class="button-inner">See Results</span>
             </button>
@@ -1523,14 +1327,10 @@
       const winner = getWinningArchetype();
       const cfg = RESULT_CONFIG[winner];
 
-      setPatternBackground();
+      setBlankHatchedBackground();
       branches.classList.remove("show");
       mist.classList.add("show");
       clearOverlays();
-
-      resultOverlay.innerHTML = "";
-      resultMotionOverlay.innerHTML = "";
-      resultEffectOverlay.innerHTML = "";
 
       if (cfg.motion) {
         resultOverlay.innerHTML = `<img src="${cfg.base}" alt="" class="result-img">`;
@@ -1558,14 +1358,13 @@
 
       content.innerHTML = `
         <div class="story-wrap">
-          <div class="results-box">
+          <div class="results-box" style="margin-top:48vh;">
             <h2>You’re a ${cfg.title}</h2>
             <p>${cfg.desc}</p>
-            <p style="text-align:center; margin-top:18px;">[Avatar Displayed]</p>
             <p class="tagline"><strong>Tagline:</strong><br>${cfg.tagline}</p>
           </div>
 
-          <div style="margin-top:18px; position:relative; z-index:60;">
+          <div style="margin-top:34px; margin-bottom:36px; position:relative; z-index:60;">
             <button class="button show" id="restartBtn" type="button" style="opacity:1; transform:none;">
               <span class="button-inner">Take the path again</span>
             </button>
