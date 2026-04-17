@@ -868,11 +868,16 @@
       content.innerHTML = `
         <div class="story-wrap">
           <div class="story-text" id="story">
-            The path opens again, but only just. Something waits ahead, still and impossible, framed by the dark as if the woods themselves meant for you to find it. You stop. Not because you are afraid. Because suddenly it feels like the story is waiting to see what kind of person you are.
+            You come across someone else on the path. They look unsure, like they have been waiting for someone to show up. When they see you, they hesitate, like they are trying to decide if they should say something at all.
           </div>
 
           <div class="choices">
-            <button class="choice-btn">Scene 3 is loaded. Add your final approved text and choices here.</button>
+            <button class="choice-btn" data-archetype="hero">A. Tell them to stay close. You will figure it out together.</button>
+            <button class="choice-btn" data-archetype="antihero">B. Ask them what happened before deciding what to do next.</button>
+            <button class="choice-btn" data-archetype="sorcerer">C. Watch how they respond before deciding how much to trust what they say.</button>
+            <button class="choice-btn" data-archetype="alchemist">D. Give them something small to do. Standing still will not help either of you move forward.</button>
+            <button class="choice-btn" data-archetype="trickster">E. Say something to ease the tension. They will think clearer if they are not stuck in it.</button>
+            <button class="choice-btn" data-archetype="sage">F. Listen first. Then tell them what they need to hear, not just what they want.</button>
           </div>
         </div>
       `;
@@ -886,7 +891,13 @@
         story.style.transform = "translateY(0)";
       }, 120);
 
-      console.log("Scene 3 loaded. Current PLC Origin scores:", scores);
+      document.querySelectorAll(".choice-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          applyChoice(btn.dataset.archetype, btn, () => {
+            console.log("Scene 3 complete. Current PLC Origin scores:", scores);
+          });
+        });
+      });
     }
 
     setBackground(PATHS.loadingBg, "0.58");
