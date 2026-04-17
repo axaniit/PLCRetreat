@@ -1324,71 +1324,81 @@
     }
 
     function renderResults() {
-      const winner = getWinningArchetype();
-      const cfg = RESULT_CONFIG[winner];
+  const winner = getWinningArchetype();
+  const cfg = RESULT_CONFIG[winner];
 
-      setBlankHatchedBackground();
-      branches.classList.remove("show");
-      mist.classList.add("show");
-      clearOverlays();
+  setBlankHatchedBackground();
+  branches.classList.remove("show");
+  mist.classList.add("show");
+  clearOverlays();
 
-      if (cfg.motion) {
-        resultOverlay.innerHTML = `<img src="${cfg.base}" alt="" class="result-img">`;
-        resultMotionOverlay.innerHTML = `<img src="${cfg.motion}" alt="" class="result-motion-img">`;
-        resultOverlay.classList.add("show");
-        resultMotionOverlay.classList.add("show");
-      } else {
-        resultOverlay.innerHTML = `<img src="${cfg.base}" alt="" class="result-img breathe">`;
-        resultOverlay.classList.add("show");
-      }
+  // --- AVATAR SETUP (FIXED HEIGHT + POSITION) ---
+  if (cfg.motion) {
+    resultOverlay.innerHTML = `
+      <img src="${cfg.base}" class="result-img base">
+    `;
+    resultMotionOverlay.innerHTML = `
+      <img src="${cfg.motion}" class="result-img motion">
+    `;
+    resultOverlay.classList.add("show");
+    resultMotionOverlay.classList.add("show");
+  } else {
+    resultOverlay.innerHTML = `
+      <img src="${cfg.base}" class="result-img breathe">
+    `;
+    resultOverlay.classList.add("show");
+  }
 
-      if (cfg.effect === "coin") {
-        resultEffectOverlay.innerHTML = `<div class="coin-rise"></div>`;
-        resultEffectOverlay.classList.add("show");
-      } else if (cfg.effect === "motion") {
-        resultEffectOverlay.innerHTML = `
-          <div class="motion-arc"></div>
-          <div class="orbit-dust od1"></div>
-          <div class="orbit-dust od2"></div>
-          <div class="orbit-dust od3"></div>
-          <div class="orbit-dust od4"></div>
-        `;
-        resultEffectOverlay.classList.add("show");
-      }
+  // --- EFFECTS ---
+  if (cfg.effect === "coin") {
+    resultEffectOverlay.innerHTML = `<div class="coin-rise"></div>`;
+    resultEffectOverlay.classList.add("show");
+  } else if (cfg.effect === "motion") {
+    resultEffectOverlay.innerHTML = `
+      <div class="motion-arc"></div>
+      <div class="orbit-dust od1"></div>
+      <div class="orbit-dust od2"></div>
+      <div class="orbit-dust od3"></div>
+      <div class="orbit-dust od4"></div>
+    `;
+    resultEffectOverlay.classList.add("show");
+  }
 
-      content.innerHTML = `
-        <div class="story-wrap">
-          <div class="results-box" style="margin-top:48vh;">
-            <h2>You’re a ${cfg.title}</h2>
-            <p>${cfg.desc}</p>
-            <p class="tagline"><strong>Tagline:</strong><br>${cfg.tagline}</p>
-          </div>
+  // --- CONTENT ---
+  content.innerHTML = `
+    <div class="story-wrap">
 
-          <div style="margin-top:34px; margin-bottom:36px; position:relative; z-index:60;">
-            <button class="button show" id="restartBtn" type="button" style="opacity:1; transform:none;">
-              <span class="button-inner">Take the path again</span>
-            </button>
-          </div>
-        </div>
-      `;
+      <div class="results-box" style="margin-top:58vh;">
+        <h2>You’re a ${cfg.title}</h2>
 
-      setTimeout(() => {
-        content.classList.remove("fade-out");
-      }, 120);
+        <p>${cfg.desc}</p>
 
-      document.getElementById("restartBtn").addEventListener("click", () => {
-        localStorage.removeItem("plcOriginScores");
-        scores.hero = 0;
-        scores.antihero = 0;
-        scores.sorcerer = 0;
-        scores.alchemist = 0;
-        scores.trickster = 0;
-        scores.sage = 0;
-        content.classList.add("fade-out");
-        setTimeout(renderScene1, 550);
-      });
-    }
+        <p class="tagline">
+          <strong>Tagline:</strong><br>
+          ${cfg.tagline}
+        </p>
+      </div>
 
+      <div style="margin-top:40px; margin-bottom:50px;">
+        <button class="button show" id="restartBtn">
+          <span class="button-inner">Take the path again</span>
+        </button>
+      </div>
+
+    </div>
+  `;
+
+  setTimeout(() => {
+    content.classList.remove("fade-out");
+  }, 120);
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    localStorage.removeItem("plcOriginScores");
+    Object.keys(scores).forEach(k => scores[k] = 0);
+    content.classList.add("fade-out");
+    setTimeout(renderScene1, 550);
+  });
+}
     setBackground(PATHS.loadingBg, "0.58");
 
     setTimeout(() => {
