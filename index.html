@@ -36,6 +36,7 @@
       background-repeat: no-repeat;
       transition: background-image 0.6s ease;
       filter: brightness(0.92);
+      z-index: 1;
     }
 
     .vignette {
@@ -192,10 +193,11 @@
       opacity: 0.78;
     }
 
+    /* FIXED: raised z-index hard so leaves definitely sit on top */
     .scene2-flow {
       position: absolute;
       inset: 0;
-      z-index: 20;
+      z-index: 35;
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.7s ease;
@@ -293,55 +295,58 @@
       100% { transform: translate(-110px, 14px) scale(0.6); opacity: 0; }
     }
 
+    /* FIXED: explicit z-index on leaves too */
     .leaf-swirl {
       position: absolute;
       left: 50%;
       top: 50%;
       transform-origin: center center;
-      opacity: 0.9;
+      opacity: 0.98;
+      z-index: 36;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.18));
     }
 
-    .leaf-a { width: 18px; animation: leafOrbitA 4.7s linear infinite; }
-    .leaf-b { width: 20px; animation: leafOrbitB 5.3s linear infinite; }
-    .leaf-c { width: 16px; animation: leafOrbitC 4.0s linear infinite; }
-    .leaf-d { width: 22px; animation: leafOrbitD 5.8s linear infinite; }
-    .leaf-e { width: 14px; animation: leafOrbitE 3.9s linear infinite; }
-    .leaf-f { width: 18px; animation: leafOrbitF 4.9s linear infinite; }
+    .leaf-a { width: 28px; animation: leafOrbitA 4.7s linear infinite; }
+    .leaf-b { width: 32px; animation: leafOrbitB 5.3s linear infinite; }
+    .leaf-c { width: 24px; animation: leafOrbitC 4.0s linear infinite; }
+    .leaf-d { width: 34px; animation: leafOrbitD 5.8s linear infinite; }
+    .leaf-e { width: 22px; animation: leafOrbitE 3.9s linear infinite; }
+    .leaf-f { width: 28px; animation: leafOrbitF 4.9s linear infinite; }
 
     @keyframes leafOrbitA {
-      0%   { transform: translate(-118px, 14px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.72; }
-      100% { transform: translate(142px, 10px) rotate(320deg); opacity: 0; }
+      0%   { transform: translate(-145px, 18px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.85; }
+      100% { transform: translate(165px, 14px) rotate(320deg); opacity: 0; }
     }
 
     @keyframes leafOrbitB {
-      0%   { transform: translate(126px, 22px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.76; }
-      100% { transform: translate(-126px, 28px) rotate(340deg); opacity: 0; }
+      0%   { transform: translate(150px, 26px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.9; }
+      100% { transform: translate(-150px, 32px) rotate(340deg); opacity: 0; }
     }
 
     @keyframes leafOrbitC {
-      0%   { transform: translate(-76px, 50px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.7; }
-      100% { transform: translate(88px, 30px) rotate(280deg); opacity: 0; }
+      0%   { transform: translate(-92px, 62px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.82; }
+      100% { transform: translate(108px, 38px) rotate(280deg); opacity: 0; }
     }
 
     @keyframes leafOrbitD {
-      0%   { transform: translate(92px, 56px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.7; }
-      100% { transform: translate(-100px, 36px) rotate(360deg); opacity: 0; }
+      0%   { transform: translate(112px, 68px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.82; }
+      100% { transform: translate(-118px, 44px) rotate(360deg); opacity: 0; }
     }
 
     @keyframes leafOrbitE {
-      0%   { transform: translate(-36px, 62px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.64; }
-      100% { transform: translate(74px, 38px) rotate(260deg); opacity: 0; }
+      0%   { transform: translate(-44px, 74px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.76; }
+      100% { transform: translate(86px, 48px) rotate(260deg); opacity: 0; }
     }
 
     @keyframes leafOrbitF {
-      0%   { transform: translate(26px, 58px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 0.68; }
-      100% { transform: translate(-82px, 34px) rotate(300deg); opacity: 0; }
+      0%   { transform: translate(30px, 70px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.8; }
+      100% { transform: translate(-96px, 42px) rotate(300deg); opacity: 0; }
     }
 
     .content {
